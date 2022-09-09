@@ -1,9 +1,10 @@
 import React from 'react';
+import CountdownTimer from './CountdownTimer';
 
 const App = () => {
   return (
     <React.Fragment>
-      <h1>Hello!</h1>
+      <CountdownTimer />
     </React.Fragment>
   );
 };
