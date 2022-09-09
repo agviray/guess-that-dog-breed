@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
+import CountdownStartButton from './CountdownStartButton';
 
 const CountdownTimer = () => {
   const [remainingTime, setRemainingTime] = useState(30);
   const [timeUpMessage, setTimeUpMessage] = useState('');
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
-  const startCountdown = (event) => {
+  const startCountdown = () => {
     let timeLeft = remainingTime;
     let interval;
-
-    setIsButtonDisabled(true);
 
     interval = setInterval(() => {
       timeLeft--;
@@ -26,11 +24,18 @@ const CountdownTimer = () => {
       if (timeLeft === 0) {
         clearInterval(interval);
         setTimeUpMessage("Time's up!");
-        setIsButtonDisabled(false);
       }
     }, 1000);
+  };
 
-    event.preventDefault();
+  const renderCountdownStartButton = () => {
+    let text = 'Start Countdown';
+    return (
+      <CountdownStartButton
+        buttonText={text}
+        onButtonClicked={startCountdown}
+      />
+    );
   };
 
   return (
@@ -42,14 +47,7 @@ const CountdownTimer = () => {
         <span className="remainingTime"> 00:{remainingTime}</span>
       </div>
       <br />
-      <button
-        disabled={isButtonDisabled}
-        onClick={(event) =>
-          event.target.disabled ? null : startCountdown(event)
-        }
-      >
-        Start Countdown
-      </button>
+      {renderCountdownStartButton()}
       <br />
       <div>{timeUpMessage}</div>
     </React.Fragment>
