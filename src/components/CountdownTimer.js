@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 
 const CountdownTimer = () => {
-  const [remainingTime, setRemainingTime] = useState(10);
+  const [remainingTime, setRemainingTime] = useState(30);
   const [timeUpMessage, setTimeUpMessage] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const startCountdown = (event) => {
     let timeLeft = remainingTime;
     let interval;
+
+    setIsButtonDisabled(true);
 
     interval = setInterval(() => {
       timeLeft--;
@@ -15,6 +18,7 @@ const CountdownTimer = () => {
       }
       if (timeLeft <= 10) {
         // Apply the "time almost up" styles to numbers.
+        // Maybe pass props to a RemainingTime styled component?
       }
       if (timeLeft < 10) {
         setRemainingTime(`0${timeLeft}`);
@@ -22,6 +26,7 @@ const CountdownTimer = () => {
       if (timeLeft === 0) {
         clearInterval(interval);
         setTimeUpMessage("Time's up!");
+        setIsButtonDisabled(false);
       }
     }, 1000);
 
@@ -37,7 +42,12 @@ const CountdownTimer = () => {
         <span className="remainingTime"> 00:{remainingTime}</span>
       </div>
       <br />
-      <button onClick={(event) => startCountdown(event)}>
+      <button
+        disabled={isButtonDisabled}
+        onClick={(event) =>
+          event.target.disabled ? null : startCountdown(event)
+        }
+      >
         Start Countdown
       </button>
       <br />
