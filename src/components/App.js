@@ -1,12 +1,10 @@
 import React from 'react';
-import Directions from './Directions';
-import CountdownTimer from './CountdownTimer';
+import TitleScreen from './TitleScreen';
 
 const App = () => {
   return (
     <React.Fragment>
-      {/* <CountdownTimer /> */}
-      <Directions />
+      <TitleScreen />
     </React.Fragment>
   );
 };
