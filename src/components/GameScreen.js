@@ -1,6 +1,7 @@
 import React from 'react';
-import Nugget from '../assets/IMG_3520.JPG';
 import styled from 'styled-components';
+import Navbar from './Navbar';
+import Nugget from '../assets/IMG_3520.JPG';
 
 const DogImage = styled.img`
   max-width: 400px;
@@ -12,7 +13,7 @@ const GameScreen = () => {
     <React.Fragment>
       <header>
         <h1>Game Screen</h1>
-        {/* Add access to game settings/options here! */}
+        <Navbar />
       </header>
       <main>
         <div className="question">Which breed does this dog belong to?</div>
@@ -38,6 +39,10 @@ const GameScreen = () => {
             <input type="radio" id="answerThree" name="answer" />
             Answer Choice Three
           </label>
+        </div>
+        <br />
+        <div>
+          <button>Submit</button>
         </div>
       </main>
     </React.Fragment>
