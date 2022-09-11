@@ -1,10 +1,10 @@
 import React from 'react';
-import TitleScreen from './TitleScreen';
+import Layout from './Layout';
 
 const App = () => {
   return (
     <React.Fragment>
-      <TitleScreen />
+      <Layout />
     </React.Fragment>
   );
 };
