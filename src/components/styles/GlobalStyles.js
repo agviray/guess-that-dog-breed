@@ -8,12 +8,12 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
-  /* h1, h2 {
-
-  } */
+  h1, h2 {
+    font-family: 'Shrikhand', sans-serif;
+  }
 
   ul {
     margin: 0;
@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
 
   p {
     font-size: 16px;
-    line-height: 1.55;
+    line-height: 1.5;
   }
 `;
 
