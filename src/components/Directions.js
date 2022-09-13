@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
@@ -21,6 +21,7 @@ const StyledHeadingContainer = styled.div`
     display: inline-block;
     width: 30px;
     height: 30px;
+    background-color: green;
 
     &:before {
       display: inline-block;
@@ -28,14 +29,16 @@ const StyledHeadingContainer = styled.div`
       position: absolute;
       top: 50%;
       left: 50%;
-      margin-top: -9.9px;
+      margin-top: ${({ isToggled }) => (isToggled ? '-3.9px' : '-9.9px')};
       margin-left: -7px;
       width: 12px;
       height: 12px;
       border-style: solid solid none none;
       border-color: #333333;
       border-width: 2px;
-      transform: rotate(135deg);
+      transform: ${({ isToggled }) =>
+        isToggled ? 'rotate(-45deg)' : 'rotate(135deg)'};
+      transition: all 0.2s ease;
     }
   }
 `;
@@ -46,13 +49,16 @@ const StyledContentContainer = styled.ul`
 `;
 
 const Directions = () => {
+  const [isToggled, setIsToggled] = useState(false);
   return (
     <StyledContainer>
-      <StyledHeadingContainer>
+      <StyledHeadingContainer isToggled={isToggled}>
         <h2>How to Play</h2>
-        <span className="toggler"></span>
+        <span
+          className="toggler"
+          onClick={() => setIsToggled(!isToggled)}
+        ></span>
       </StyledHeadingContainer>
-
       <StyledContentContainer>
         <li>Click the "Start" button to begin the game.</li>
         <li>
