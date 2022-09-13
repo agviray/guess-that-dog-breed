@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
   position: relative;
   padding: 0.75rem;
+  background-color: lightgray;
 `;
 
 const StyledHeadingContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1rem;
 
   .h2 {
     display: inline-block;
@@ -21,7 +21,6 @@ const StyledHeadingContainer = styled.div`
     display: inline-block;
     width: 30px;
     height: 30px;
-    background-color: green;
 
     &:before {
       display: inline-block;
@@ -44,12 +43,30 @@ const StyledHeadingContainer = styled.div`
 `;
 
 const StyledContentContainer = styled.ul`
-  max-height: 0;
+  max-height: 0px;
   overflow: hidden;
+  transition: all 0.2s ease;
+
+  li:first-child {
+    padding-top: 1rem;
+  }
 `;
 
 const Directions = () => {
   const [isToggled, setIsToggled] = useState(false);
+  const contentRef = useRef();
+
+  useEffect(() => {
+    const content = contentRef.current;
+    const contentScrollHeight = content.scrollHeight;
+
+    if (isToggled) {
+      content.style.maxHeight = `${contentScrollHeight}px`;
+    } else {
+      content.style.maxHeight = '';
+    }
+  }, [isToggled]);
+
   return (
     <StyledContainer>
       <StyledHeadingContainer isToggled={isToggled}>
@@ -59,7 +76,7 @@ const Directions = () => {
           onClick={() => setIsToggled(!isToggled)}
         ></span>
       </StyledHeadingContainer>
-      <StyledContentContainer>
+      <StyledContentContainer ref={contentRef} isToggled={isToggled}>
         <li>Click the "Start" button to begin the game.</li>
         <li>
           An image of a dog will be displayed, along with a set of answer
