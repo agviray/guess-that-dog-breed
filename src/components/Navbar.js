@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import GearIcon from '../assets/icons/gear-icon.svg';
 import SettingsMenu from './SettingsMenu';
 
-const StyledSettingsToggler = styled.div`
+const StyledSettingsToggler = styled.span`
   display: inline-block;
-  width: 30px;
+  width: 35px;
+  height: 35px;
 
   img {
     max-width: 100%;
+    max-height: 100%;
   }
 `;
 
