@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import GearIcon from '../assets/icons/gear-icon.svg';
 import SettingsMenu from './SettingsMenu';
@@ -37,14 +37,20 @@ const StyledSettingsToggler = styled.span`
 `;
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenuDisplay = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <StyledNavbar>
       <nav>
         <StyledLogo>Logo</StyledLogo>
-        <StyledSettingsToggler>
+        <StyledSettingsToggler onClick={() => toggleMenuDisplay()}>
           <img src={GearIcon} alt="gear icon" />
         </StyledSettingsToggler>
-        <SettingsMenu />
+        <SettingsMenu isMenuOpen={isMenuOpen} />
       </nav>
     </StyledNavbar>
   );

@@ -9,6 +9,9 @@ const StyledSettingsMenu = styled.ul`
   width: 170px;
   padding: 0.5rem;
   background-color: #f6f6ff;
+  transform-origin: top right;
+  transform: ${({ isMenuOpen }) => (isMenuOpen ? 'scale(1)' : 'scale(0)')};
+  transition: all 0.2s ease;
 `;
 
 const StyledOption = styled.li`
@@ -29,9 +32,9 @@ const StyledOption = styled.li`
   }
 `;
 
-const SettingsMenu = () => {
+const SettingsMenu = ({ isMenuOpen }) => {
   return (
-    <StyledSettingsMenu>
+    <StyledSettingsMenu isMenuOpen={isMenuOpen}>
       <StyledOption>
         <span>Directions</span>
       </StyledOption>
