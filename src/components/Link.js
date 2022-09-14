@@ -7,9 +7,15 @@ const StyledLink = styled.a`
 `;
 
 const Link = ({ children, href }) => {
+  const onClick = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <React.Fragment>
-      <StyledLink href={href}>{children}</StyledLink>
+      <StyledLink onClick={onClick} href={href}>
+        {children}
+      </StyledLink>
     </React.Fragment>
   );
 };
