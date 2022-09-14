@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Route = ({ path, children }) => {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  // Listens for 'navigation event' dispatched by Link component's onClick handler.
+  // When the navigation event occurs, update the Route component.
   useEffect(() => {
-    // Listens for 'navigation event' dispatched by Link component's onClick handler.
     const onLocationChange = () => {
-      console.log('The location has changed!');
+      setCurrentPath(window.location.pathname);
     };
 
     window.addEventListener('popstate', onLocationChange);
@@ -14,8 +17,7 @@ const Route = ({ path, children }) => {
     };
   }, []);
 
-  // Listens for "route changed"
-  return window.location.pathname === path ? children : null;
+  return currentPath === path ? children : null;
 };
 
 export default Route;
