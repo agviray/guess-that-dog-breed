@@ -1,5 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 import Link from './Link';
+import GearIcon from '../assets/icons/gear-icon.svg';
+
+const StyledSettingsToggler = styled.div`
+  display: inline-block;
+  width: 30px;
+
+  img {
+    max-width: 100%;
+  }
+`;
 
 const Navbar = () => {
   return (
@@ -7,7 +18,9 @@ const Navbar = () => {
       <div className="navbar">
         <nav>
           <div className="logo">Guess That Dog Breed!</div>
-          <div className="settingsIcon">Gear Icon</div>
+          <StyledSettingsToggler>
+            <img src={GearIcon} alt="gear icon" />
+          </StyledSettingsToggler>
           <div className="settingsMenu">
             <ul>
               <li>Directions</li>
