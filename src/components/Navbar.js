@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from './Link';
 
 const Navbar = () => {
   return (
@@ -11,7 +12,9 @@ const Navbar = () => {
             <ul>
               <li>Directions</li>
               <li>Timer Settings</li>
-              <li>Quit Game</li>
+              <li>
+                <Link href="/">Quit Game</Link>
+              </li>
             </ul>
           </div>
         </nav>

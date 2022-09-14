@@ -19,7 +19,7 @@ const StyledStartButton = styled.span`
 const StartButton = () => {
   return (
     <StyledContainer>
-      <Link href="#">
+      <Link href="/game">
         <StyledStartButton>Start</StyledStartButton>
       </Link>
     </StyledContainer>
