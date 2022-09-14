@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from './Link';
 import GearIcon from '../assets/icons/gear-icon.svg';
+import SettingsMenu from './SettingsMenu';
 
 const StyledSettingsToggler = styled.div`
   display: inline-block;
@@ -21,15 +21,7 @@ const Navbar = () => {
           <StyledSettingsToggler>
             <img src={GearIcon} alt="gear icon" />
           </StyledSettingsToggler>
-          <div className="settingsMenu">
-            <ul>
-              <li>Directions</li>
-              <li>Timer Settings</li>
-              <li>
-                <Link href="/">Quit Game</Link>
-              </li>
-            </ul>
-          </div>
+          <SettingsMenu />
         </nav>
       </div>
     </React.Fragment>
