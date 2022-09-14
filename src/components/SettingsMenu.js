@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import Link from './Link';
 
 const StyledSettingsMenu = styled.ul`
+  position: absolute;
+  bottom: -121px;
+  right: 0;
   width: 170px;
   padding: 0.5rem;
-  background-color: #f4ecdc;
+  background-color: #f6f6ff;
 `;
 
 const StyledOption = styled.li`
@@ -17,7 +20,7 @@ const StyledOption = styled.li`
     margin: 0.5rem 0;
     width: 100%;
     height: 1px;
-    background-color: #d8d0bf;
+    background-color: #dbdbe7;
   }
 
   span {

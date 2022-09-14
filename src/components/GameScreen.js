@@ -12,7 +12,6 @@ const GameScreen = () => {
   return (
     <React.Fragment>
       <header>
-        <h1>Game Screen</h1>
         <Navbar />
       </header>
       <main>
