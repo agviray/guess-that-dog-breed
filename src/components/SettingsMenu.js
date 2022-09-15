@@ -12,6 +12,7 @@ const StyledSettingsMenu = styled.ul`
   transform-origin: top right;
   transform: ${({ isMenuOpen }) => (isMenuOpen ? 'scale(1)' : 'scale(0)')};
   transition: all 0.2s ease;
+  z-index: 1001;
 `;
 
 const StyledOption = styled.li`

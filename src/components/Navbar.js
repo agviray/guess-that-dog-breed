@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Overlay from './Overlay';
 import GearIcon from '../assets/icons/gear-icon.svg';
 import SettingsMenu from './SettingsMenu';
 
@@ -17,6 +18,7 @@ const StyledNavbar = styled.div`
     align-items: center;
     padding: 1.25rem 0;
     background-color: #f6f6ff;
+    z-index: 2;
   }
 `;
 
@@ -25,10 +27,12 @@ const StyledLogo = styled.div`
 `;
 
 const StyledSettingsToggler = styled.span`
+  position: relative;
   display: inline-block;
   width: 35px;
   height: 35px;
   margin-right: 1rem;
+  z-index: 1000;
 
   img {
     max-width: 100%;
@@ -51,6 +55,7 @@ const Navbar = () => {
           <img src={GearIcon} alt="gear icon" />
         </StyledSettingsToggler>
         <SettingsMenu isMenuOpen={isMenuOpen} />
+        <Overlay isMenuOpen={isMenuOpen} onIsMenuOpenChange={setIsMenuOpen} />
       </nav>
     </StyledNavbar>
   );
