@@ -15,8 +15,10 @@ const StyledOverlay = styled.div`
     hasChildren ? 'rgba(51, 51, 51, 0.7)' : ''};
 `;
 
-const StyledChildrenContainer = styled.div`
-  display: inline-block;
+const StyledOverlayContents = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f6f6ff;
 `;
 
 const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
@@ -35,9 +37,9 @@ const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
       overlayStatus={overlayStatus}
       onClick={toggleOverlayDisplay}
     >
-      <StyledChildrenContainer ref={childrenContainerRef}>
+      <StyledOverlayContents ref={childrenContainerRef}>
         {children}
-      </StyledChildrenContainer>
+      </StyledOverlayContents>
     </StyledOverlay>
   );
 };

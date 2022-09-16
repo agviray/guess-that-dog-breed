@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 const StyledDirections = styled.ul`
   padding: 0 1rem;
-  background-color: #f6f6ff;
-  width: 80%;
-  margin: 0 auto;
+  background-color: inherit;
 
   li {
     padding-bottom: 1rem;
