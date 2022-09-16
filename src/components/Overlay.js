@@ -2,22 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledOverlay = styled.div`
-  display: ${({ isMenuOpen }) => (isMenuOpen ? 'block' : 'none')};
+  display: ${({ overlayStatus }) => (overlayStatus ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
 `;
 
-const Overlay = ({ children, isMenuOpen, onIsMenuOpenChange }) => {
+const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
   const toggleOverlayDisplay = () => {
-    return isMenuOpen ? onIsMenuOpenChange(false) : null;
+    return overlayStatus ? onOverlayStatusChange(false) : null;
   };
 
   return (
-    <StyledOverlay onClick={toggleOverlayDisplay} isMenuOpen={isMenuOpen}>
+    <StyledOverlay onClick={toggleOverlayDisplay} overlayStatus={overlayStatus}>
       {children}
     </StyledOverlay>
   );

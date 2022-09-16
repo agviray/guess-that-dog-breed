@@ -27,7 +27,6 @@ const StyledNavbar = styled.div`
       display: inline-block;
       width: 35px;
       height: 35px;
-      z-index: 1000;
 
       &.arrow {
         margin-left: 1rem;
@@ -64,7 +63,10 @@ const Navbar = () => {
           <img src={GearIcon} alt="gear icon" />
         </span>
         <SettingsMenu isMenuOpen={isMenuOpen} />
-        <Overlay isMenuOpen={isMenuOpen} onIsMenuOpenChange={setIsMenuOpen} />
+        <Overlay
+          overlayStatus={isMenuOpen}
+          onOverlayStatusChange={setIsMenuOpen}
+        />
       </nav>
     </StyledNavbar>
   );
