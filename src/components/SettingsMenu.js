@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Overlay from './Overlay';
+import Directions from './Directions';
 import Link from './Link';
 
 const StyledSettingsMenu = styled.ul`
@@ -11,7 +13,7 @@ const StyledSettingsMenu = styled.ul`
   background-color: #f6f6ff;
   transform-origin: top right;
   transform: ${({ isMenuOpen }) => (isMenuOpen ? 'scale(1)' : 'scale(0)')};
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
   z-index: 1001;
 `;
 
@@ -33,18 +35,33 @@ const StyledOption = styled.li`
   }
 `;
 
-const SettingsMenu = ({ isMenuOpen }) => {
+const SettingsMenu = ({ isMenuOpen, onIsMenuOpenChange }) => {
+  const [wasOptionSelected, setWasOptionSelected] = useState(false);
+
+  const showSelectedOption = () => {
+    onIsMenuOpenChange();
+    return setWasOptionSelected(!wasOptionSelected);
+  };
+
   return (
-    <StyledSettingsMenu isMenuOpen={isMenuOpen}>
-      <StyledOption>
-        <span>Directions</span>
-      </StyledOption>
-      <StyledOption>
-        <Link href="/">
-          <span>Quit Game</span>
-        </Link>
-      </StyledOption>
-    </StyledSettingsMenu>
+    <React.Fragment>
+      <Overlay
+        overlayStatus={wasOptionSelected}
+        onOverlayStatusChange={setWasOptionSelected}
+      >
+        <Directions />
+      </Overlay>
+      <StyledSettingsMenu isMenuOpen={isMenuOpen}>
+        <StyledOption onClick={showSelectedOption}>
+          <span>Directions</span>
+        </StyledOption>
+        <StyledOption>
+          <Link href="/">
+            <span>Quit Game</span>
+          </Link>
+        </StyledOption>
+      </StyledSettingsMenu>
+    </React.Fragment>
   );
 };
 

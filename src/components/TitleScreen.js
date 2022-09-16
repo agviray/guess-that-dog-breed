@@ -5,7 +5,6 @@ import Directions from './Directions';
 
 const StyledDirectionsContainer = styled.div`
   position: relative;
-  padding: 0.75rem;
   background-color: lightgray;
 `;
 
@@ -13,6 +12,7 @@ const StyledHeadingContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
 
   .h2 {
     display: inline-block;

@@ -2,8 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledDirections = styled.ul`
-  li:not(li:last-child) {
+  padding: 0 1rem;
+  background-color: #f6f6ff;
+  width: 80%;
+  margin: 0 auto;
+
+  li {
     padding-bottom: 1rem;
+
+    &:first-child {
+      padding-top: 1rem;
+    }
   }
 `;
 

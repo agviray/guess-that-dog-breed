@@ -62,7 +62,10 @@ const Navbar = () => {
         <span className={'icon settings'} onClick={() => toggleMenuDisplay()}>
           <img src={GearIcon} alt="gear icon" />
         </span>
-        <SettingsMenu isMenuOpen={isMenuOpen} />
+        <SettingsMenu
+          isMenuOpen={isMenuOpen}
+          onIsMenuOpenChange={toggleMenuDisplay}
+        />
         <Overlay
           overlayStatus={isMenuOpen}
           onOverlayStatusChange={setIsMenuOpen}
