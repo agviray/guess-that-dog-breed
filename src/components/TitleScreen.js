@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Link from './Link';
 import Button from './Button';
+import Overlay from './Overlay';
+import Directions from './Directions';
 
 const theme = {
   button: {
@@ -12,6 +14,7 @@ const theme = {
 };
 
 const StyledContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,6 +37,12 @@ const StyledContents = styled.div`
 `;
 
 const TitleScreen = () => {
+  const [isDirectionsShown, setIsDirectionsShown] = useState(false);
+
+  const toggleDirections = () => {
+    setIsDirectionsShown(!isDirectionsShown);
+  };
+
   return (
     <StyledContainer>
       <StyledContents>
@@ -45,9 +54,16 @@ const TitleScreen = () => {
             <Link href="/game">
               <Button>Start</Button>
             </Link>
+            <Button onButtonClick={toggleDirections}>Directions</Button>
           </ThemeProvider>
         </main>
       </StyledContents>
+      <Overlay
+        overlayStatus={isDirectionsShown}
+        onOverlayStatusChange={setIsDirectionsShown}
+      >
+        <Directions />
+      </Overlay>
     </StyledContainer>
   );
 };

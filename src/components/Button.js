@@ -12,9 +12,13 @@ const StyledButton = styled.span`
   background-color: ${({ theme }) => theme.button.bgColor};
 `;
 
-const Button = ({ children }) => {
+const Button = ({ children, onButtonClick }) => {
+  const handleButtonClick = () => {
+    return onButtonClick ? onButtonClick() : null;
+  };
+
   return (
-    <StyledButton>
+    <StyledButton onClick={handleButtonClick}>
       <span>{children}</span>
     </StyledButton>
   );
