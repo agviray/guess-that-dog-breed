@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    height: 100vh;
     font-family: 'Inter', sans-serif;
   }
 
