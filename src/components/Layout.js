@@ -1,8 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import TitleScreen from './TitleScreen';
 import GameScreen from './GameScreen';
 import Route from './Route';
+
+const theme = {
+  button: {
+    bgColor: '#f44b12',
+    textColor: '#f3f3f3',
+    marginBtm: '2rem',
+  },
+};
 
 const Wrapper = styled.div`
   max-width: 1100px;
@@ -12,14 +20,16 @@ const Wrapper = styled.div`
 
 const Layout = () => {
   return (
-    <Wrapper>
-      <Route path="/">
-        <TitleScreen />
-      </Route>
-      <Route path="/game">
-        <GameScreen />
-      </Route>
-    </Wrapper>
+    <ThemeProvider theme={theme}>
+      <Wrapper>
+        <Route path="/">
+          <TitleScreen />
+        </Route>
+        <Route path="/game">
+          <GameScreen />
+        </Route>
+      </Wrapper>
+    </ThemeProvider>
   );
 };
 

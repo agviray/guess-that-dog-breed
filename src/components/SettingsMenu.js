@@ -49,7 +49,10 @@ const SettingsMenu = ({ isMenuOpen, onIsMenuOpenChange }) => {
         overlayStatus={wasOptionSelected}
         onOverlayStatusChange={setWasOptionSelected}
       >
-        <Directions />
+        <Directions
+          directionsStatus={wasOptionSelected}
+          onDirectionsStatusChange={setWasOptionSelected}
+        />
       </Overlay>
       <StyledSettingsMenu isMenuOpen={isMenuOpen}>
         <StyledOption onClick={showSelectedOption}>
