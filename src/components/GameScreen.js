@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import Navbar from './Navbar';
 import Nugget from '../assets/IMG_3520.JPG';
 
@@ -9,6 +10,24 @@ const DogImage = styled.img`
 `;
 
 const GameScreen = () => {
+  const [breedsList, setBreedsList] = useState([]);
+
+  useEffect(() => {
+    const getRandomDogBreeds = async () => {
+      const response = await axios.get(
+        'https://dog.ceo/api/breeds/list/random/4',
+        {}
+      );
+
+      const breeds = response.data.message;
+      setBreedsList([...breeds]);
+    };
+
+    getRandomDogBreeds();
+  }, []);
+
+  console.log(breedsList);
+
   return (
     <React.Fragment>
       <header>
@@ -20,6 +39,7 @@ const GameScreen = () => {
         <br />
         <div>
           <DogImage src={Nugget} alt="dog image" />
+          {`Found ${breedsList.length} breeds in total.`}
         </div>
         <br />
         <br />
