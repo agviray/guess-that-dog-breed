@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import dogceoapi from '../api/dogceoapi';
 import Navbar from './Navbar';
 import Nugget from '../assets/IMG_3520.JPG';
 
@@ -14,10 +14,7 @@ const GameScreen = () => {
 
   useEffect(() => {
     const getRandomDogBreeds = async () => {
-      const response = await axios.get(
-        'https://dog.ceo/api/breeds/list/random/4',
-        {}
-      );
+      const response = await dogceoapi.get('/breeds/list/random/4', {});
 
       const breeds = response.data.message;
       setBreedsList([...breeds]);
