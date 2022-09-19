@@ -27,7 +27,7 @@ const AnswerChoices = () => {
 
       const choices = breedsList.map((choice, index) => {
         return {
-          type: `${index === 0 ? 'correct' : 'incorrect'}`,
+          type: `${index === 0 ? 'correct' : `incorrect-${index}`}`,
           value: `${choice}`,
         };
       });
@@ -41,31 +41,19 @@ const AnswerChoices = () => {
       setAnswerChoices([...updatedAnswerChoices]);
     }
   }, [breedsList]);
-  return (
-    <React.Fragment>
-      <div>
-        <label htmlFor="answerOne">
-          <input type="radio" id="answerOne" name="answer" />
-          Answer Choice One
-        </label>
-        <br />
-        <label htmlFor="answerTwo">
-          <input type="radio" id="answerTwo" name="answer" />
-          Answer Choice Two
-        </label>
-        <br />
-        <label htmlFor="answerThree">
-          <input type="radio" id="answerThree" name="answer" />
-          Answer Choice Three
-        </label>
-        <br />
-        <label htmlFor="answerFour">
-          <input type="radio" id="answerFour" name="answer" />
-          Answer Choice Four
+
+  const renderedAnswerChoices = answerChoices.map((choice, index) => {
+    return (
+      <div key={index}>
+        <label htmlFor={choice.type}>
+          <input type="radio" id={choice.type} name="answer" />
+          {choice.value}
         </label>
       </div>
-    </React.Fragment>
-  );
+    );
+  });
+
+  return <React.Fragment>{renderedAnswerChoices}</React.Fragment>;
 };
 
 export default AnswerChoices;
