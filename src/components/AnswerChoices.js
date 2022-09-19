@@ -17,21 +17,22 @@ const AnswerChoices = () => {
     getRandomDogBreeds();
   }, []);
 
-  // Assigns one of the four dog breed strings as a 'correct' answer, and the
-  // other breeds as 'incorrect' answers.
+  // Assigns and randomizes answer choices.
   useEffect(() => {
     const assignAnswerChoices = () => {
       if (breedsList.length === 0) {
         return;
       }
 
-      const choices = breedsList.map((choice, index) => {
+      let choices = breedsList.map((choice, index) => {
         return {
           type: `${index === 0 ? 'correct' : `incorrect-${index}`}`,
           value: `${choice}`,
         };
       });
 
+      // Randomize order of answer choices.
+      choices = choices.sort(() => Math.random() - 0.5);
       return choices;
     };
 
