@@ -1,13 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import Navbar from './Navbar';
-import Nugget from '../assets/IMG_3520.JPG';
+import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
-
-const DogImage = styled.img`
-  max-width: 400px;
-  max-height: 500px;
-`;
+import Nugget from '../assets/IMG_3520.JPG';
 
 const GameScreen = () => {
   return (
@@ -20,7 +15,7 @@ const GameScreen = () => {
         <br />
         <br />
         <div>
-          <DogImage src={Nugget} alt="dog image" />
+          <DogImage src={Nugget} />
         </div>
         <br />
         <br />
