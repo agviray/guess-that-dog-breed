@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dogceoapi from '../api/dogceoapi';
 
@@ -14,8 +14,22 @@ const StyledContainer = styled.div`
   }
 `;
 
-const DogImage = ({ answerChoiceDetails }) => {
+const DogImage = ({ onIsImageReadyChange, answerChoiceDetails }) => {
   const [imageSrc, setImageSrc] = useState('');
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    const image = imageRef.current;
+
+    const onImageLoaded = () => {
+      onIsImageReadyChange(true);
+    };
+    image.addEventListener('load', onImageLoaded);
+
+    return () => {
+      image.removeEventListener('load', onImageLoaded);
+    };
+  }, []);
 
   useEffect(() => {
     // - Callback to use for filtering seen in getDogImage.
@@ -44,7 +58,7 @@ const DogImage = ({ answerChoiceDetails }) => {
 
   return (
     <StyledContainer>
-      <img src={imageSrc} alt="dog" />
+      <img ref={imageRef} src={imageSrc} alt="dog" />
     </StyledContainer>
   );
 };

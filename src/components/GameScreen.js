@@ -5,6 +5,7 @@ import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
 
 const GameScreen = () => {
+  const [isImageReady, setIsImageReady] = useState(false);
   const [answerChoiceDetails, setAnswerChoiceDetails] = useState([]);
 
   useEffect(() => {
@@ -41,10 +42,15 @@ const GameScreen = () => {
         <div className="question">Which breed does this dog belong to?</div>
         <br />
         <br />
-        <DogImage answerChoiceDetails={answerChoiceDetails} />
+        <DogImage
+          onIsImageReadyChange={setIsImageReady}
+          answerChoiceDetails={answerChoiceDetails}
+        />
         <br />
         <br />
-        <AnswerChoices answerChoiceDetails={answerChoiceDetails} />
+        {isImageReady ? (
+          <AnswerChoices answerChoiceDetails={answerChoiceDetails} />
+        ) : null}
         <br />
         <div>
           <button>Submit</button>
