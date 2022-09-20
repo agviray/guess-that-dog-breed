@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import dogceoapi from '../api/dogceoapi';
+
+const StyledContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  img {
+    width: 100%;
+    max-width: 400px;
+  }
+`;
 
 const DogImage = ({ correctBreed }) => {
   const [imageSrc, setImageSrc] = useState('');
@@ -23,9 +36,9 @@ const DogImage = ({ correctBreed }) => {
   }, [correctBreed]);
 
   return (
-    <React.Fragment>
+    <StyledContainer>
       <img src={imageSrc} alt="dog" />
-    </React.Fragment>
+    </StyledContainer>
   );
 };
 
