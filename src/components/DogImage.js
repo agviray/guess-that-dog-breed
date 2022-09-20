@@ -14,15 +14,22 @@ const StyledContainer = styled.div`
   }
 `;
 
-const DogImage = ({ correctBreed }) => {
+const DogImage = ({ answerChoiceDetails }) => {
   const [imageSrc, setImageSrc] = useState('');
 
   useEffect(() => {
+    // - Callback to use for filtering seen in getDogImage.
+    const filterCorrectAnswer = (choice) => {
+      return choice.type === 'correct';
+    };
+
+    // - Get random image of "correct answer" breed.
     const getDogImage = async () => {
-      if (correctBreed === '') {
+      if (answerChoiceDetails.length === 0) {
         return;
       }
-
+      const correctAnswer = answerChoiceDetails.filter(filterCorrectAnswer);
+      const correctBreed = correctAnswer[0].value;
       const response = await dogceoapi.get(
         `/breed/${correctBreed}/images/random/1`,
         {}
@@ -33,7 +40,7 @@ const DogImage = ({ correctBreed }) => {
     };
 
     getDogImage();
-  }, [correctBreed]);
+  }, [answerChoiceDetails]);
 
   return (
     <StyledContainer>
