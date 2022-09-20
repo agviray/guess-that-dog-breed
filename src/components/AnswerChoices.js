@@ -24,6 +24,7 @@ const AnswerChoices = ({ onCorrectBreedFiltered }) => {
         return;
       }
 
+      // Sets the first breed in breedsList as the 'correct' answer.
       let choices = breedsList.map((choice, index) => {
         return {
           type: `${index === 0 ? 'correct' : `incorrect-${index}`}`,
