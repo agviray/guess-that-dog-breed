@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dogceoapi from '../api/dogceoapi';
 
-const AnswerChoices = () => {
+const AnswerChoices = ({ onCorrectBreedFiltered }) => {
   const [breedsList, setBreedsList] = useState([]);
   const [answerChoices, setAnswerChoices] = useState([]);
 
@@ -33,15 +33,22 @@ const AnswerChoices = () => {
 
       // Randomize order of answer choices.
       choices = choices.sort(() => Math.random() - 0.5);
-      return choices;
+      setAnswerChoices([...choices]);
     };
 
-    const updatedAnswerChoices = assignAnswerChoices();
-
-    if (updatedAnswerChoices) {
-      setAnswerChoices([...updatedAnswerChoices]);
-    }
+    assignAnswerChoices();
   }, [breedsList]);
+
+  useEffect(() => {
+    const filterCorrectAnswerBreed = (choice) => {
+      return choice.type === 'correct';
+    };
+
+    if (answerChoices.length !== 0) {
+      const correctAnswerBreed = answerChoices.filter(filterCorrectAnswerBreed);
+      onCorrectBreedFiltered(correctAnswerBreed[0].value);
+    }
+  }, [answerChoices]);
 
   const renderedAnswerChoices = answerChoices.map((choice, index) => {
     return (
