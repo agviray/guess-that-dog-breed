@@ -5,7 +5,7 @@ import GameScreen from './GameScreen';
 import Route from './Route';
 
 const theme = {
-  button: {
+  titleScreenButton: {
     bgColor: '#f44b12',
     textColor: '#f3f3f3',
     marginBtm: '2rem',

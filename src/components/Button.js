@@ -5,11 +5,10 @@ const StyledButton = styled.span`
   display: block;
   width: 200px;
   height: 45px;
-  margin-bottom: ${({ theme }) => theme.button.marginBtm};
   padding: 0.75rem 1rem;
   text-align: center;
-  color: ${({ theme }) => theme.button.textColor};
-  background-color: ${({ theme }) => theme.button.bgColor};
+  color: ${({ theme }) => theme.titleScreenButton.textColor};
+  background-color: ${({ theme }) => theme.titleScreenButton.bgColor};
 `;
 
 const Button = ({ children, onButtonClick }) => {

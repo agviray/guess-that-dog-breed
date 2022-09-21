@@ -28,6 +28,11 @@ const StyledContents = styled.div`
   }
 `;
 
+const StyledButtonContainer = styled.span`
+  display: inline-block;
+  margin-bottom: ${({ theme }) => theme.titleScreenButton.marginBtm};
+`;
+
 const TitleScreen = () => {
   const [isDirectionsShown, setIsDirectionsShown] = useState(false);
 
@@ -43,9 +48,18 @@ const TitleScreen = () => {
         </header>
         <main>
           <Link href="/game">
-            <Button>Start</Button>
+            <StyledButtonContainer>
+              <Button className="titleScreenButton">Start</Button>
+            </StyledButtonContainer>
           </Link>
-          <Button onButtonClick={toggleDirections}>Directions</Button>
+          <StyledButtonContainer>
+            <Button
+              className="titleScreenButton"
+              onButtonClick={toggleDirections}
+            >
+              Directions
+            </Button>
+          </StyledButtonContainer>
         </main>
       </StyledContents>
       <Overlay

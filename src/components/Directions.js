@@ -25,6 +25,10 @@ const StyledDirections = styled.ul`
   }
 `;
 
+const StyledButtonContainer = styled.div`
+  padding-bottom: 1rem;
+`;
+
 const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
   const exitDirections = () => {
     return directionsStatus ? onDirectionsStatusChange(false) : null;
@@ -48,7 +52,9 @@ const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
         </li>
         <li>That's all! Let's see how well you know your dogs!</li>
       </StyledDirections>
-      <Button onButtonClick={exitDirections}>Close</Button>
+      <StyledButtonContainer>
+        <Button onButtonClick={exitDirections}>Close</Button>
+      </StyledButtonContainer>
     </StyledContainer>
   );
 };
