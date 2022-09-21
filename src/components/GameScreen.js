@@ -4,6 +4,7 @@ import dogceoapi from '../api/dogceoapi';
 import Navbar from './Navbar';
 import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
+import GameControls from './GameControls';
 
 const StyledMainContents = styled.div`
   padding-top: 110px;
@@ -61,11 +62,11 @@ const GameScreen = () => {
           />
           <div className="answerChoicesContainer">
             {isImageReady ? (
-              <AnswerChoices answerChoiceDetails={answerChoiceDetails} />
+              <React.Fragment>
+                <AnswerChoices answerChoiceDetails={answerChoiceDetails} />
+                <GameControls />
+              </React.Fragment>
             ) : null}
-          </div>
-          <div className="buttonContainer">
-            <button>Submit</button>
           </div>
         </StyledMainContents>
       </main>

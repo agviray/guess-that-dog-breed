@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 const StyledButton = styled.span`
   display: block;
-  width: 200px;
-  height: 45px;
+  width: ${({ theme }) => theme.width};
   padding: 0.75rem 1rem;
   text-align: center;
-  color: ${({ theme }) => theme.titleScreenButton.textColor};
-  background-color: ${({ theme }) => theme.titleScreenButton.bgColor};
+  color: ${({ theme }) => theme.color};
+  background-color: ${({ theme }) => theme.backgroundColor};
 `;
 
 const Button = ({ children, onButtonClick }) => {

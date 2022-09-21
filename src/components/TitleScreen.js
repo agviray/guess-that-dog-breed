@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Link from './Link';
 import Button from './Button';
 import Overlay from './Overlay';
@@ -30,7 +30,7 @@ const StyledContents = styled.div`
 
 const StyledButtonContainer = styled.span`
   display: inline-block;
-  margin-bottom: ${({ theme }) => theme.titleScreenButton.marginBtm};
+  margin-bottom: 2rem;
 `;
 
 const TitleScreen = () => {
@@ -40,38 +40,47 @@ const TitleScreen = () => {
     setIsDirectionsShown(!isDirectionsShown);
   };
 
+  const theme = {
+    width: '200px',
+    height: '45px',
+    color: '#f3f3f3',
+    backgroundColor: '#f44b12',
+  };
+
   return (
-    <StyledContainer>
-      <StyledContents>
-        <header>
-          <h1 className="title">Guess That Dog Breed!</h1>
-        </header>
-        <main>
-          <Link href="/game">
+    <ThemeProvider theme={theme}>
+      <StyledContainer>
+        <StyledContents>
+          <header>
+            <h1 className="title">Guess That Dog Breed!</h1>
+          </header>
+          <main>
+            <Link href="/game">
+              <StyledButtonContainer>
+                <Button className="titleScreenButton">Start</Button>
+              </StyledButtonContainer>
+            </Link>
             <StyledButtonContainer>
-              <Button className="titleScreenButton">Start</Button>
+              <Button
+                className="titleScreenButton"
+                onButtonClick={toggleDirections}
+              >
+                Directions
+              </Button>
             </StyledButtonContainer>
-          </Link>
-          <StyledButtonContainer>
-            <Button
-              className="titleScreenButton"
-              onButtonClick={toggleDirections}
-            >
-              Directions
-            </Button>
-          </StyledButtonContainer>
-        </main>
-      </StyledContents>
-      <Overlay
-        overlayStatus={isDirectionsShown}
-        onOverlayStatusChange={setIsDirectionsShown}
-      >
-        <Directions
-          directionsStatus={isDirectionsShown}
-          onDirectionsStatusChange={setIsDirectionsShown}
-        />
-      </Overlay>
-    </StyledContainer>
+          </main>
+        </StyledContents>
+        <Overlay
+          overlayStatus={isDirectionsShown}
+          onOverlayStatusChange={setIsDirectionsShown}
+        >
+          <Directions
+            directionsStatus={isDirectionsShown}
+            onDirectionsStatusChange={setIsDirectionsShown}
+          />
+        </Overlay>
+      </StyledContainer>
+    </ThemeProvider>
   );
 };
 
