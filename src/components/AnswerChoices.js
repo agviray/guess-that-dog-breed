@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+
+const StyledAnswerContainer = styled.div`
+  padding: 0.75rem 0;
+
+  input {
+    margin-right: 1rem;
+  }
+`;
 
 const AnswerChoices = ({ answerChoiceDetails }) => {
   const [answerChoices, setAnswerChoices] = useState([]);
@@ -19,12 +28,12 @@ const AnswerChoices = ({ answerChoiceDetails }) => {
 
   const renderedAnswerChoices = answerChoices.map((choice, index) => {
     return (
-      <div key={index}>
+      <StyledAnswerContainer key={index}>
         <label htmlFor={choice.type}>
           <input type="radio" id={choice.type} name="answer" />
           {choice.value}
         </label>
-      </div>
+      </StyledAnswerContainer>
     );
   });
 
