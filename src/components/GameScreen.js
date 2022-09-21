@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import dogceoapi from '../api/dogceoapi';
 import Navbar from './Navbar';
 import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
+
+const StyledMainContents = styled.div`
+  padding-top: 110px;
+
+  .question {
+    padding-bottom: 2rem;
+  }
+
+  .answerChoicesContainer,
+  .buttonContainer {
+    padding-top: 2rem;
+  }
+`;
 
 const GameScreen = () => {
   const [isImageReady, setIsImageReady] = useState(false);
@@ -39,22 +53,21 @@ const GameScreen = () => {
         <Navbar />
       </header>
       <main>
-        <div className="question">Which breed does this dog belong to?</div>
-        <br />
-        <br />
-        <DogImage
-          onIsImageReadyChange={setIsImageReady}
-          answerChoiceDetails={answerChoiceDetails}
-        />
-        <br />
-        <br />
-        {isImageReady ? (
-          <AnswerChoices answerChoiceDetails={answerChoiceDetails} />
-        ) : null}
-        <br />
-        <div>
-          <button>Submit</button>
-        </div>
+        <StyledMainContents>
+          <div className="question">Which breed does this dog belong to?</div>
+          <DogImage
+            onIsImageReadyChange={setIsImageReady}
+            answerChoiceDetails={answerChoiceDetails}
+          />
+          <div className="answerChoicesContainer">
+            {isImageReady ? (
+              <AnswerChoices answerChoiceDetails={answerChoiceDetails} />
+            ) : null}
+          </div>
+          <div className="buttonContainer">
+            <button>Submit</button>
+          </div>
+        </StyledMainContents>
       </main>
     </React.Fragment>
   );
