@@ -39,6 +39,7 @@ const GameScreen = () => {
         return {
           type: `${index === 0 ? 'correct' : `incorrect-${index}`}`,
           value: `${breed}`,
+          isCorrect: index === 0 ? true : false,
         };
       });
 
