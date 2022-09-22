@@ -9,28 +9,43 @@ const StyledAnswerContainer = styled.div`
   }
 `;
 
-const AnswerChoices = ({ answerChoiceDetails }) => {
+const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
   const [answerChoices, setAnswerChoices] = useState([]);
 
   useEffect(() => {
     // - Randomize order of answer choices before displaying them.
     const shuffleAnswerChoices = () => {
-      if (answerChoiceDetails.length === 0) {
+      if (allAnswers.length === 0) {
         return;
       }
-      let choices = answerChoiceDetails.sort(() => Math.random() - 0.5);
-      console.log(choices);
+      let choices = allAnswers.sort(() => Math.random() - 0.5);
       setAnswerChoices([...choices]);
     };
 
     shuffleAnswerChoices();
-  }, [answerChoiceDetails]);
+  }, [allAnswers]);
+
+  const updateSelectedAnswerChoice = (e) => {
+    const allChoices = [...allAnswers];
+    const selectedChoice = allChoices.filter((choice) => {
+      if (choice.value === e.target.value) {
+        return choice;
+      }
+    });
+    onAnswerChoiceSelected({ ...selectedChoice[0] });
+  };
 
   const renderedAnswerChoices = answerChoices.map((choice, index) => {
     return (
       <StyledAnswerContainer key={index}>
         <label htmlFor={choice.type}>
-          <input type="radio" id={choice.type} name="answer" />
+          <input
+            onChange={updateSelectedAnswerChoice}
+            value={choice.value}
+            type="radio"
+            id={choice.type}
+            name="answer"
+          />
           {choice.value}
         </label>
       </StyledAnswerContainer>

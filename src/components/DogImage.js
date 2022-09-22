@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
   }
 `;
 
-const DogImage = ({ onIsImageReadyChange, answerChoiceDetails }) => {
+const DogImage = ({ onIsImageReadyChange, allAnswers }) => {
   const [imageSrc, setImageSrc] = useState('');
   const imageRef = useRef(null);
 
@@ -39,10 +39,10 @@ const DogImage = ({ onIsImageReadyChange, answerChoiceDetails }) => {
 
     // - Get random image of "correct answer" breed.
     const getDogImage = async () => {
-      if (answerChoiceDetails.length === 0) {
+      if (allAnswers.length === 0) {
         return;
       }
-      const correctAnswer = answerChoiceDetails.filter(filterCorrectAnswer);
+      const correctAnswer = allAnswers.filter(filterCorrectAnswer);
       const correctBreed = correctAnswer[0].value;
       const response = await dogceoapi.get(
         `/breed/${correctBreed}/images/random/1`,
@@ -54,7 +54,7 @@ const DogImage = ({ onIsImageReadyChange, answerChoiceDetails }) => {
     };
 
     getDogImage();
-  }, [answerChoiceDetails]);
+  }, [allAnswers]);
 
   return (
     <StyledContainer>

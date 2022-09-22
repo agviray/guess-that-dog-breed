@@ -21,7 +21,8 @@ const StyledMainContents = styled.div`
 
 const GameScreen = () => {
   const [isImageReady, setIsImageReady] = useState(false);
-  const [answerChoiceDetails, setAnswerChoiceDetails] = useState([]);
+  const [allAnswers, setAllAnswers] = useState([]);
+  const [selectedAnswer, setSelectedAnswer] = useState({});
 
   useEffect(() => {
     // - Request 4 random dog breeds.
@@ -43,7 +44,7 @@ const GameScreen = () => {
         };
       });
 
-      setAnswerChoiceDetails([...answerChoiceDetails]);
+      setAllAnswers([...answerChoiceDetails]);
     };
 
     assignAnswerChoicesDetails();
@@ -59,12 +60,15 @@ const GameScreen = () => {
           <div className="question">Which breed does this dog belong to?</div>
           <DogImage
             onIsImageReadyChange={setIsImageReady}
-            answerChoiceDetails={answerChoiceDetails}
+            allAnswers={allAnswers}
           />
           <div className="answerChoicesContainer">
             {isImageReady ? (
               <React.Fragment>
-                <AnswerChoices answerChoiceDetails={answerChoiceDetails} />
+                <AnswerChoices
+                  allAnswers={allAnswers}
+                  onAnswerChoiceSelected={setSelectedAnswer}
+                />
                 <GameControls />
               </React.Fragment>
             ) : null}
