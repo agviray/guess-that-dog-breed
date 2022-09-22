@@ -33,18 +33,18 @@ const StyledButtonContainer = styled.span`
   margin-bottom: 2rem;
 `;
 
+const theme = {
+  width: '200px',
+  height: '45px',
+  color: '#f3f3f3',
+  backgroundColor: '#f44b12',
+};
+
 const TitleScreen = () => {
   const [isDirectionsShown, setIsDirectionsShown] = useState(false);
 
   const toggleDirections = () => {
     setIsDirectionsShown(!isDirectionsShown);
-  };
-
-  const theme = {
-    width: '200px',
-    height: '45px',
-    color: '#f3f3f3',
-    backgroundColor: '#f44b12',
   };
 
   return (

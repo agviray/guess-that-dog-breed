@@ -16,7 +16,13 @@ const theme = {
   backgroundColor: '#2304fb',
 };
 
+const disabledStyles = {
+  color: '#cacaca',
+  backgroundColor: '#efefef',
+};
+
 const GameControls = () => {
+  const [isSubmitAvailable, setIsSubmitAvailable] = useState(false);
   const [answerChecked, setAnswerChecked] = useState(false);
 
   const checkAnswer = () => {
@@ -34,7 +40,12 @@ const GameControls = () => {
         {answerChecked ? (
           <Button onButtonClick={continueGame}>Continue</Button>
         ) : (
-          <Button onButtonClick={checkAnswer}>Submit</Button>
+          <Button
+            onButtonClick={isSubmitAvailable ? checkAnswer : null}
+            disabledStyles={isSubmitAvailable ? null : disabledStyles}
+          >
+            Submit
+          </Button>
         )}
       </StyledContainer>
     </ThemeProvider>

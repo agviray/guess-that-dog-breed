@@ -6,17 +6,19 @@ const StyledButton = styled.span`
   width: ${({ theme }) => theme.width};
   padding: 0.75rem 1rem;
   text-align: center;
-  color: ${({ theme }) => theme.color};
-  background-color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ disabledStyles, theme }) =>
+    disabledStyles ? disabledStyles.color : theme.color};
+  background-color: ${({ disabledStyles, theme }) =>
+    disabledStyles ? disabledStyles.backgroundColor : theme.backgroundColor};
 `;
 
-const Button = ({ children, onButtonClick }) => {
+const Button = ({ children, onButtonClick, disabledStyles }) => {
   const handleButtonClick = () => {
     return onButtonClick ? onButtonClick() : null;
   };
 
   return (
-    <StyledButton onClick={handleButtonClick}>
+    <StyledButton onClick={handleButtonClick} disabledStyles={disabledStyles}>
       <span>{children}</span>
     </StyledButton>
   );

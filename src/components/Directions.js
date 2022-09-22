@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Button from './Button';
 
 const StyledContainer = styled.div`
@@ -34,28 +34,37 @@ const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
     return directionsStatus ? onDirectionsStatusChange(false) : null;
   };
 
+  const theme = {
+    width: '200px',
+    height: '45px',
+    color: '#f3f3f3',
+    backgroundColor: '#f44b12',
+  };
+
   return (
-    <StyledContainer>
-      <h2>How to Play</h2>
-      <StyledDirections>
-        <li>Click the "Start" button to begin the game.</li>
-        <li>
-          An image of a dog will be displayed, along with a set of answer
-          choices that describe the breed of the dog shown in the image.
-        </li>
-        <li>
-          Your goal is to select the correct breed of the dog that is shown.
-        </li>
-        <li>
-          Select your answer from the available choices, and then click on the
-          "Submit" button.
-        </li>
-        <li>That's all! Let's see how well you know your dogs!</li>
-      </StyledDirections>
-      <StyledButtonContainer>
-        <Button onButtonClick={exitDirections}>Close</Button>
-      </StyledButtonContainer>
-    </StyledContainer>
+    <ThemeProvider theme={theme}>
+      <StyledContainer>
+        <h2>How to Play</h2>
+        <StyledDirections>
+          <li>Click the "Start" button to begin the game.</li>
+          <li>
+            An image of a dog will be displayed, along with a set of answer
+            choices that describe the breed of the dog shown in the image.
+          </li>
+          <li>
+            Your goal is to select the correct breed of the dog that is shown.
+          </li>
+          <li>
+            Select your answer from the available choices, and then click on the
+            "Submit" button.
+          </li>
+          <li>That's all! Let's see how well you know your dogs!</li>
+        </StyledDirections>
+        <StyledButtonContainer>
+          <Button onButtonClick={exitDirections}>Close</Button>
+        </StyledButtonContainer>
+      </StyledContainer>
+    </ThemeProvider>
   );
 };
 
