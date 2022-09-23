@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Button from './Button';
 
@@ -21,13 +21,26 @@ const disabledStyles = {
   backgroundColor: '#efefef',
 };
 
-const GameControls = () => {
+const GameControls = ({ selectedAnswer }) => {
   const [isSubmitAvailable, setIsSubmitAvailable] = useState(false);
   const [answerChecked, setAnswerChecked] = useState(false);
 
-  const checkAnswer = () => {
+  useEffect(() => {
+    const selected = { ...selectedAnswer };
+
+    if (Object.keys(selected).length === 0) {
+      return;
+    } else {
+      return setIsSubmitAvailable(true);
+    }
+  }, [selectedAnswer]);
+
+  const checkAnswer = (answer) => {
+    const selectedAnswer = { ...answer };
     console.log('I am checking your answer!');
-    setAnswerChecked(true);
+    console.log(`Your answer is ${selectedAnswer.value}`);
+    console.log(`True or false? Your answer is: ${selectedAnswer.isCorrect}`);
+    // setAnswerChecked(true);
   };
 
   const continueGame = () => {
@@ -41,7 +54,9 @@ const GameControls = () => {
           <Button onButtonClick={continueGame}>Continue</Button>
         ) : (
           <Button
-            onButtonClick={isSubmitAvailable ? checkAnswer : null}
+            onButtonClick={() =>
+              isSubmitAvailable ? checkAnswer(selectedAnswer) : null
+            }
             disabledStyles={isSubmitAvailable ? null : disabledStyles}
           >
             Submit

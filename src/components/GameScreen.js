@@ -69,7 +69,7 @@ const GameScreen = () => {
                   allAnswers={allAnswers}
                   onAnswerChoiceSelected={setSelectedAnswer}
                 />
-                <GameControls />
+                <GameControls selectedAnswer={selectedAnswer} />
               </React.Fragment>
             ) : null}
           </div>
