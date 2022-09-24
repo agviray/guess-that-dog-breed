@@ -2,10 +2,21 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledAnswerContainer = styled.div`
+  position: relative;
   padding: 0.75rem 0;
 
   input {
+    display: inline-block;
     margin-right: 1rem;
+  }
+
+  label:after {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    right: -20px;
+    content: '';
+    display: inline-block;
   }
 `;
 
@@ -24,6 +35,8 @@ const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
 
     shuffleAnswerChoices();
   }, [allAnswers]);
+
+  console.log(answerChoices);
 
   const updateSelectedAnswerChoice = (e) => {
     const allChoices = [...allAnswers];

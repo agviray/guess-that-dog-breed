@@ -7,6 +7,7 @@ import AnswerChoices from './AnswerChoices';
 import GameControls from './GameControls';
 
 const StyledMainContents = styled.div`
+  position: relative;
   padding-top: 110px;
 
   .question {
@@ -15,14 +16,19 @@ const StyledMainContents = styled.div`
 
   .answerChoicesContainer,
   .buttonContainer {
-    padding-top: 2rem;
+    margin-top: 2rem;
   }
+`;
+
+const Message = styled.div`
+  padding-top: 2rem;
 `;
 
 const GameScreen = () => {
   const [isImageReady, setIsImageReady] = useState(false);
   const [allAnswers, setAllAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState({});
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     // - Request 4 random dog breeds.
@@ -50,6 +56,10 @@ const GameScreen = () => {
     assignAnswerChoicesDetails();
   }, []);
 
+  const filterCorrectAnswer = (choice) => {
+    return choice.isCorrect;
+  };
+
   return (
     <React.Fragment>
       <header>
@@ -69,7 +79,16 @@ const GameScreen = () => {
                   allAnswers={allAnswers}
                   onAnswerChoiceSelected={setSelectedAnswer}
                 />
-                <GameControls selectedAnswer={selectedAnswer} />
+                <Message>{message}</Message>
+                <GameControls
+                  selectedAnswer={selectedAnswer}
+                  identifiedAnswer={
+                    allAnswers.length === 0
+                      ? null
+                      : allAnswers.filter(filterCorrectAnswer)[0].value
+                  }
+                  onMessageChange={setMessage}
+                />
               </React.Fragment>
             ) : null}
           </div>

@@ -21,7 +21,11 @@ const disabledStyles = {
   backgroundColor: '#efefef',
 };
 
-const GameControls = ({ selectedAnswer }) => {
+const GameControls = ({
+  selectedAnswer,
+  identifiedAnswer,
+  onMessageChange,
+}) => {
   const [isSubmitAvailable, setIsSubmitAvailable] = useState(false);
   const [answerChecked, setAnswerChecked] = useState(false);
 
@@ -35,12 +39,14 @@ const GameControls = ({ selectedAnswer }) => {
     }
   }, [selectedAnswer]);
 
-  const checkAnswer = (answer) => {
-    const selectedAnswer = { ...answer };
-    console.log('I am checking your answer!');
-    console.log(`Your answer is ${selectedAnswer.value}`);
-    console.log(`True or false? Your answer is: ${selectedAnswer.isCorrect}`);
-    // setAnswerChecked(true);
+  const checkAnswer = (userAnswer, identifiedAnswer) => {
+    const correctAnswer = identifiedAnswer;
+    const selectedAnswer = { ...userAnswer };
+    return selectedAnswer.isCorrect
+      ? onMessageChange(`Correct!`)
+      : onMessageChange(
+          `Sorry! Your answer is incorrect. The correct answer is: ${correctAnswer}.`
+        );
   };
 
   const continueGame = () => {
@@ -55,7 +61,9 @@ const GameControls = ({ selectedAnswer }) => {
         ) : (
           <Button
             onButtonClick={() =>
-              isSubmitAvailable ? checkAnswer(selectedAnswer) : null
+              isSubmitAvailable
+                ? checkAnswer(selectedAnswer, identifiedAnswer)
+                : null
             }
             disabledStyles={isSubmitAvailable ? null : disabledStyles}
           >
