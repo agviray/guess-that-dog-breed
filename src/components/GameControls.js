@@ -25,9 +25,9 @@ const GameControls = ({
   selectedAnswer,
   identifiedAnswer,
   onMessageChange,
+  isAnswerChecked,
 }) => {
   const [isSubmitAvailable, setIsSubmitAvailable] = useState(false);
-  const [answerChecked, setAnswerChecked] = useState(false);
 
   useEffect(() => {
     const selected = { ...selectedAnswer };
@@ -50,13 +50,13 @@ const GameControls = ({
   };
 
   const continueGame = () => {
-    console.log('You WILL continue the game!!!');
+    // Do something to reset the GameScreen.
   };
 
   return (
     <ThemeProvider theme={theme}>
       <StyledContainer>
-        {answerChecked ? (
+        {isAnswerChecked ? (
           <Button onButtonClick={continueGame}>Continue</Button>
         ) : (
           <Button

@@ -29,6 +29,7 @@ const GameScreen = () => {
   const [allAnswers, setAllAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState({});
   const [message, setMessage] = useState('');
+  const [isAnswerChecked, setIsAnswerChecked] = useState(false);
 
   useEffect(() => {
     // - Request 4 random dog breeds.
@@ -55,6 +56,14 @@ const GameScreen = () => {
 
     assignAnswerChoicesDetails();
   }, []);
+
+  useEffect(() => {
+    if (message === '') {
+      return;
+    } else {
+      setIsAnswerChecked(true);
+    }
+  }, [message]);
 
   const filterCorrectAnswer = (choice) => {
     return choice.isCorrect;
@@ -88,6 +97,7 @@ const GameScreen = () => {
                       : allAnswers.filter(filterCorrectAnswer)[0].value
                   }
                   onMessageChange={setMessage}
+                  isAnswerChecked={isAnswerChecked}
                 />
               </React.Fragment>
             ) : null}
