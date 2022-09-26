@@ -41,8 +41,8 @@ const GameControls = ({
 
   const checkAnswer = (userAnswer, identifiedAnswer) => {
     const correctAnswer = identifiedAnswer;
-    const selectedAnswer = { ...userAnswer };
-    return selectedAnswer.isCorrect
+    const chosenAnswer = { ...userAnswer };
+    return correctAnswer === chosenAnswer.value
       ? onMessageChange(`Correct!`)
       : onMessageChange(
           `Sorry! Your answer is incorrect. The correct answer is: ${correctAnswer}.`
