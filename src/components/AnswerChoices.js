@@ -40,12 +40,13 @@ const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
 
   const updateSelectedAnswerChoice = (e) => {
     const allChoices = [...allAnswers];
-    const selectedChoice = allChoices.filter((choice) => {
-      if (choice.value === e.target.value) {
+    const checkedChoice = e.target.value;
+    const updatedSelectedChoice = allChoices.filter((choice) => {
+      if (choice.value === checkedChoice) {
         return choice;
       }
     });
-    onAnswerChoiceSelected({ ...selectedChoice[0] });
+    onAnswerChoiceSelected({ ...updatedSelectedChoice[0] });
   };
 
   const renderedAnswerChoices = answerChoices.map((choice, index) => {
