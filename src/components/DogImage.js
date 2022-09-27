@@ -14,22 +14,32 @@ const StyledContainer = styled.div`
   }
 `;
 
-const DogImage = ({ onIsImageReadyChange, allAnswers }) => {
+const DogImage = ({ onIsImageReadyChange, allAnswers, isImageReady }) => {
   const [imageSrc, setImageSrc] = useState('');
   const imageRef = useRef(null);
 
   useEffect(() => {
     const image = imageRef.current;
-
     const onImageLoaded = () => {
       onIsImageReadyChange(true);
     };
+
     image.addEventListener('load', onImageLoaded);
 
     return () => {
       image.removeEventListener('load', onImageLoaded);
     };
   }, []);
+
+  useEffect(() => {
+    const clearImage = () => {
+      setImageSrc('');
+    };
+
+    if (isImageReady === false) {
+      clearImage();
+    }
+  }, [isImageReady]);
 
   useEffect(() => {
     // - Callback to use for filtering seen in getDogImage.
@@ -55,6 +65,12 @@ const DogImage = ({ onIsImageReadyChange, allAnswers }) => {
 
     getDogImage();
   }, [allAnswers]);
+
+  useEffect(() => {
+    if (isImageReady === false) {
+      setImageSrc('');
+    }
+  }, [isImageReady]);
 
   return (
     <StyledContainer>

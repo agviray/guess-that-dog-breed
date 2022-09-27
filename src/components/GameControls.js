@@ -24,8 +24,9 @@ const disabledStyles = {
 const GameControls = ({
   selectedAnswer,
   identifiedAnswer,
-  onMessageChange,
   isAnswerChecked,
+  onMessageChange,
+  resetGameScreen,
 }) => {
   const [isSubmitAvailable, setIsSubmitAvailable] = useState(false);
 
@@ -50,7 +51,7 @@ const GameControls = ({
   };
 
   const continueGame = () => {
-    // Do something to reset the GameScreen.
+    resetGameScreen();
   };
 
   return (

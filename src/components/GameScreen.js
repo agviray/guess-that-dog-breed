@@ -54,8 +54,10 @@ const GameScreen = () => {
       setAllAnswers([...answerChoiceDetails]);
     };
 
-    assignAnswerChoicesDetails();
-  }, []);
+    if (isImageReady === false) {
+      assignAnswerChoicesDetails();
+    }
+  }, [isImageReady]);
 
   useEffect(() => {
     if (message === '') {
@@ -69,6 +71,14 @@ const GameScreen = () => {
     return choice.isCorrect;
   };
 
+  const resetGameScreen = () => {
+    setIsImageReady(false);
+    setAllAnswers([]);
+    setSelectedAnswer({});
+    setMessage('');
+    setIsAnswerChecked(false);
+  };
+
   return (
     <React.Fragment>
       <header>
@@ -80,6 +90,7 @@ const GameScreen = () => {
           <DogImage
             onIsImageReadyChange={setIsImageReady}
             allAnswers={allAnswers}
+            isImageReady={isImageReady}
           />
           <div className="answerChoicesContainer">
             {isImageReady ? (
@@ -96,8 +107,9 @@ const GameScreen = () => {
                       ? null
                       : allAnswers.filter(filterCorrectAnswer)[0].value
                   }
-                  onMessageChange={setMessage}
                   isAnswerChecked={isAnswerChecked}
+                  onMessageChange={setMessage}
+                  resetGameScreen={resetGameScreen}
                 />
               </React.Fragment>
             ) : null}
