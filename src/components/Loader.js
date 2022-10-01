@@ -13,9 +13,15 @@ const walkAnimation = keyframes`
   }
 `;
 
+const StyledWrapper = styled.div`
+  width: 100%;
+`;
+
 const StyledContainer = styled.div`
   position: relative;
-  width: 100%;
+  width: 90%;
+  max-width: 630px;
+  margin: 3rem auto 0 auto;
   transform: rotate(-10deg);
 
   & div {
@@ -61,26 +67,28 @@ const StyledPaw6 = styled.div`
 
 const Loader = () => {
   return (
-    <StyledContainer>
-      <StyledPaw1>
-        <img src={PawPrint} alt="paw print" />
-      </StyledPaw1>
-      <StyledPaw2>
-        <img src={PawPrint} alt="paw print" />
-      </StyledPaw2>
-      <StyledPaw3>
-        <img src={PawPrint} alt="paw print" />
-      </StyledPaw3>
-      <StyledPaw4>
-        <img src={PawPrint} alt="paw print" />
-      </StyledPaw4>
-      <StyledPaw5>
-        <img src={PawPrint} alt="paw print" />
-      </StyledPaw5>
-      <StyledPaw6>
-        <img src={PawPrint} alt="paw print" />
-      </StyledPaw6>
-    </StyledContainer>
+    <StyledWrapper>
+      <StyledContainer>
+        <StyledPaw1>
+          <img src={PawPrint} alt="paw print" />
+        </StyledPaw1>
+        <StyledPaw2>
+          <img src={PawPrint} alt="paw print" />
+        </StyledPaw2>
+        <StyledPaw3>
+          <img src={PawPrint} alt="paw print" />
+        </StyledPaw3>
+        <StyledPaw4>
+          <img src={PawPrint} alt="paw print" />
+        </StyledPaw4>
+        <StyledPaw5>
+          <img src={PawPrint} alt="paw print" />
+        </StyledPaw5>
+        <StyledPaw6>
+          <img src={PawPrint} alt="paw print" />
+        </StyledPaw6>
+      </StyledContainer>
+    </StyledWrapper>
   );
 };
 
