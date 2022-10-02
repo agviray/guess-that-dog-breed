@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
 `;
 
 const theme = {
-  width: '100px',
+  width: 'auto',
   height: '45px',
   color: '#f3f3f3',
   backgroundColor: '#2304fb',

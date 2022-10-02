@@ -10,6 +10,15 @@ const GlobalStyles = createGlobalStyle`
   body {
     height: 100vh;
     font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+
+    @media screen and (min-width: 600px) {
+      font-size: 18px;
+    }
+
+    @media screen and (min-width: 800px) {
+      font-size: 20px;
+    }
   }
 
   h1, h2 {
