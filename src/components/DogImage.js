@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import dogceoapi from '../api/dogceoapi';
+import Loader from './Loader';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ const StyledContainer = styled.div`
 
 const DogImage = ({ onIsImageReadyChange, allAnswers, isImageReady }) => {
   const [imageSrc, setImageSrc] = useState('');
+  const imageRef = useRef(null);
 
   useEffect(() => {
     // - Callback to use for filtering seen in getDogImage.
@@ -36,7 +38,7 @@ const DogImage = ({ onIsImageReadyChange, allAnswers, isImageReady }) => {
       );
 
       const imageSrc = response.data.message[0];
-      setImageSrc(imageSrc);
+      setTimeout(() => setImageSrc(imageSrc), 1500);
     };
 
     if (allAnswers.length !== 0) {
@@ -45,13 +47,21 @@ const DogImage = ({ onIsImageReadyChange, allAnswers, isImageReady }) => {
   }, [allAnswers]);
 
   useEffect(() => {
+    let dogImage;
     const updateIsImageReady = () => {
       onIsImageReadyChange(true);
     };
 
     if (imageSrc !== '') {
-      updateIsImageReady(true);
+      dogImage = imageRef.current;
+      dogImage.addEventListener('load', updateIsImageReady);
     }
+
+    return () => {
+      if (dogImage) {
+        dogImage.removeEventListener('load', updateIsImageReady);
+      }
+    };
   }, [imageSrc]);
 
   useEffect(() => {
@@ -66,7 +76,11 @@ const DogImage = ({ onIsImageReadyChange, allAnswers, isImageReady }) => {
 
   return (
     <StyledContainer>
-      {isImageReady ? <img src={imageSrc} alt="dog" /> : null}
+      {imageSrc !== '' ? (
+        <img ref={imageRef} src={imageSrc} alt="dog" />
+      ) : (
+        <Loader />
+      )}
     </StyledContainer>
   );
 };

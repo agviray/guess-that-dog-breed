@@ -5,7 +5,6 @@ import Navbar from './Navbar';
 import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
 import GameControls from './GameControls';
-import Loader from './Loader';
 
 const StyledMainContents = styled.div`
   position: relative;
@@ -105,10 +104,6 @@ const GameScreen = () => {
     );
   };
 
-  const onIsImageReadyChange = () => {
-    return setTimeout(() => setIsImageReady(true), 1500);
-  };
-
   return (
     <React.Fragment>
       <header>
@@ -118,11 +113,11 @@ const GameScreen = () => {
         <StyledMainContents>
           <div className="question">Which breed does this dog belong to?</div>
           <DogImage
-            onIsImageReadyChange={onIsImageReadyChange}
+            onIsImageReadyChange={setIsImageReady}
             allAnswers={allAnswers}
             isImageReady={isImageReady}
           />
-          {isImageReady ? renderAnswers() : <Loader />}
+          {isImageReady ? renderAnswers() : null}
         </StyledMainContents>
       </main>
     </React.Fragment>
