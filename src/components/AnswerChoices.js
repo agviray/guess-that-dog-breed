@@ -26,14 +26,13 @@ const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
   useEffect(() => {
     // - Randomize order of answer choices before displaying them.
     const shuffleAnswerChoices = () => {
-      if (allAnswers.length === 0) {
-        return;
-      }
       let choices = allAnswers.sort(() => Math.random() - 0.5);
       setAnswerChoices([...choices]);
     };
 
-    shuffleAnswerChoices();
+    if (answerChoices.length === 0) {
+      shuffleAnswerChoices();
+    }
   }, [allAnswers]);
 
   console.log(answerChoices);

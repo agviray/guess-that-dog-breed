@@ -53,7 +53,7 @@ const Message = styled.div`
 
 const GameScreen = () => {
   const windowWidth = useWindowWidth();
-
+  const [imageSrc, setImageSrc] = useState('');
   const [isImageReady, setIsImageReady] = useState(false);
   const [allAnswers, setAllAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState({});
@@ -89,6 +89,33 @@ const GameScreen = () => {
   }, [isImageReady]);
 
   useEffect(() => {
+    // - Callback to use for filtering seen in getDogImage.
+    const filterCorrectAnswer = (choice) => {
+      return choice.type === 'correct';
+    };
+
+    // - Get random image of "correct answer" breed.
+    const getDogImage = async () => {
+      if (allAnswers.length === 0) {
+        return;
+      }
+      const correctAnswer = allAnswers.filter(filterCorrectAnswer);
+      const correctBreed = correctAnswer[0].value;
+      const response = await dogceoapi.get(
+        `/breed/${correctBreed}/images/random/1`,
+        {}
+      );
+
+      const imageSrc = response.data.message[0];
+      setTimeout(() => setImageSrc(imageSrc), 1500);
+    };
+
+    if (allAnswers.length !== 0) {
+      getDogImage();
+    }
+  }, [allAnswers]);
+
+  useEffect(() => {
     if (message === '') {
       return;
     } else {
@@ -101,6 +128,7 @@ const GameScreen = () => {
   };
 
   const resetGameScreen = () => {
+    setImageSrc('');
     setIsImageReady(false);
     setAllAnswers([]);
     setSelectedAnswer({});
@@ -140,6 +168,7 @@ const GameScreen = () => {
         <DogImage
           onIsImageReadyChange={setIsImageReady}
           allAnswers={allAnswers}
+          imageSrc={imageSrc}
           isImageReady={isImageReady}
         />
         {isImageReady ? renderAnswers() : null}
@@ -158,6 +187,7 @@ const GameScreen = () => {
           <DogImage
             onIsImageReadyChange={setIsImageReady}
             allAnswers={allAnswers}
+            imageSrc={imageSrc}
             isImageReady={isImageReady}
           />
         </div>
