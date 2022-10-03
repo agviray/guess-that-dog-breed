@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import dogceoapi from '../api/dogceoapi';
+import useWindowWidth from './hooks/useWindowWidth';
 import Navbar from './Navbar';
 import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
@@ -18,6 +19,32 @@ const StyledMainContents = styled.div`
   .buttonContainer {
     margin-top: 2rem;
   }
+
+  @media screen and (min-width: 800px) {
+    display: flex;
+    justify-content: space-evenly;
+
+    .flexChild {
+      padding-bottom: 2rem;
+
+      &:first-child {
+        width: 40%;
+      }
+
+      &:last-child {
+        width: 50%;
+      }
+    }
+
+    .question {
+      padding-bottom: 0;
+    }
+
+    .answerChoicesContainer,
+    .buttonContainer {
+      margin-top: none;
+    }
+  }
 `;
 
 const Message = styled.div`
@@ -25,6 +52,8 @@ const Message = styled.div`
 `;
 
 const GameScreen = () => {
+  const windowWidth = useWindowWidth();
+
   const [isImageReady, setIsImageReady] = useState(false);
   const [allAnswers, setAllAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState({});
@@ -104,6 +133,38 @@ const GameScreen = () => {
     );
   };
 
+  const renderColumnLayout = () => {
+    return (
+      <React.Fragment>
+        <div className="question">Which breed does this dog belong to?</div>
+        <DogImage
+          onIsImageReadyChange={setIsImageReady}
+          allAnswers={allAnswers}
+          isImageReady={isImageReady}
+        />
+        {isImageReady ? renderAnswers() : null}
+      </React.Fragment>
+    );
+  };
+
+  const renderRowLayout = () => {
+    return (
+      <React.Fragment>
+        <div className="flexChild">
+          <div className="question">Which breed does this dog belong to?</div>
+          {isImageReady ? renderAnswers() : null}
+        </div>
+        <div className="flexChild">
+          <DogImage
+            onIsImageReadyChange={setIsImageReady}
+            allAnswers={allAnswers}
+            isImageReady={isImageReady}
+          />
+        </div>
+      </React.Fragment>
+    );
+  };
+
   return (
     <React.Fragment>
       <header>
@@ -111,13 +172,7 @@ const GameScreen = () => {
       </header>
       <main>
         <StyledMainContents>
-          <div className="question">Which breed does this dog belong to?</div>
-          <DogImage
-            onIsImageReadyChange={setIsImageReady}
-            allAnswers={allAnswers}
-            isImageReady={isImageReady}
-          />
-          {isImageReady ? renderAnswers() : null}
+          {windowWidth < 800 ? renderColumnLayout() : renderRowLayout()}
         </StyledMainContents>
       </main>
     </React.Fragment>
