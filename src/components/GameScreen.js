@@ -9,7 +9,7 @@ import GameControls from './GameControls';
 
 const StyledMainContents = styled.div`
   position: relative;
-  padding-top: 110px;
+  padding-top: 150px;
 
   .question {
     padding-bottom: 2rem;
@@ -23,6 +23,7 @@ const StyledMainContents = styled.div`
   @media screen and (min-width: 800px) {
     display: flex;
     justify-content: space-evenly;
+    padding-top: 200px;
 
     .flexChild {
       padding-bottom: 2rem;

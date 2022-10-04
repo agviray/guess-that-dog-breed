@@ -11,6 +11,7 @@ const StyledNavbar = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  background-color: #f6f6ff;
   z-index: 999;
 
   nav {
@@ -18,8 +19,9 @@ const StyledNavbar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
     padding: 1.25rem 0;
-    background-color: #f6f6ff;
     z-index: 2;
 
     span.icon {
