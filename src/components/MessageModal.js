@@ -13,17 +13,30 @@ const StyledContainer = styled.div`
   height: 100%;
   z-index: 10;
   background-color: ${({ isAnswerCorrect }) =>
-    isAnswerCorrect ? 'rgba(63, 207, 63, 0.8)' : 'rgba(226, 41, 41, 0.8)'};
+    isAnswerCorrect ? 'rgba(128, 234, 128, 0.9)' : 'rgba(241, 105, 105, 0.9)'};
+`;
 
-  .message {
+const StyledMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+
+  h2 {
     padding-bottom: 2rem;
     color: #f3f3f3;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
+    letter-spacing: 4px;
   }
 
-  span {
-    display: inline-flex;
+  .messageBody {
+    padding-bottom: 2rem;
+  }
+
+  .buttonContainer {
+    display: inline-block;
     margin-left: auto;
     margin-right: auto;
   }
@@ -39,7 +52,6 @@ const passThemeStyles = (theme, answerStatus) => {
   const newTheme = {
     ...theme,
     color: `${answerStatus ? '#3fcf3f' : '#e22929'}`,
-    border: `${answerStatus ? '2px solid #3fcf3f' : '2px solid #e22929'}`,
   };
   return newTheme;
 };
@@ -69,14 +81,18 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
   return (
     <ThemeProvider theme={() => passThemeStyles(theme, isAnswerCorrect)}>
       <StyledContainer isAnswerCorrect={isAnswerCorrect}>
-        <div className="message">
+        <StyledMessage>
           <h2>{renderMessage(submissionDetails)}</h2>
-        </div>
-        <span>
-          <Button onButtonClick={continueGame} specialStyles={null}>
-            Continue
-          </Button>
-        </span>
+          <div className="messageBody">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Dignissimos, nihil porro perferendis impedit non ex?
+          </div>
+          <div className="buttonContainer">
+            <Button onButtonClick={continueGame} specialStyles={null}>
+              Continue
+            </Button>
+          </div>
+        </StyledMessage>
       </StyledContainer>
     </ThemeProvider>
   );
