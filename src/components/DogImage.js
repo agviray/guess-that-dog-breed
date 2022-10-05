@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import Loader from './Loader';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -36,11 +35,7 @@ const DogImage = ({ onIsImageReadyChange, imageSrc }) => {
 
   return (
     <StyledContainer>
-      {imageSrc !== '' ? (
-        <img ref={imageRef} src={imageSrc} alt="dog" />
-      ) : (
-        <Loader />
-      )}
+      {imageSrc !== '' ? <img ref={imageRef} src={imageSrc} alt="dog" /> : null}
     </StyledContainer>
   );
 };

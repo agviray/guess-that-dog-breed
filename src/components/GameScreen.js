@@ -6,6 +6,7 @@ import Navbar from './Navbar';
 import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
 import GameControls from './GameControls';
+import Loader from './Loader';
 
 const StyledMainContents = styled.div`
   position: relative;
@@ -162,16 +163,39 @@ const GameScreen = () => {
     );
   };
 
-  const renderColumnLayout = () => {
+  const renderText = () => {
     return (
       <React.Fragment>
         <div className="question">Which breed does this dog belong to?</div>
-        <DogImage
-          onIsImageReadyChange={setIsImageReady}
-          allAnswers={allAnswers}
-          imageSrc={imageSrc}
-          isImageReady={isImageReady}
+        <div className="answerChoicesContainer">
+          <AnswerChoices
+            allAnswers={allAnswers}
+            onAnswerChoiceSelected={setSelectedAnswer}
+          />
+        </div>
+        <Message>{message}</Message>
+        <GameControls
+          selectedAnswer={selectedAnswer}
+          identifiedAnswer={
+            allAnswers.length === 0
+              ? null
+              : allAnswers.filter(filterCorrectAnswer)[0].value
+          }
+          isAnswerChecked={isAnswerChecked}
+          onMessageChange={setMessage}
+          resetGameScreen={resetGameScreen}
         />
+      </React.Fragment>
+    );
+  };
+
+  const renderColumnLayout = () => {
+    return (
+      <React.Fragment>
+        {isImageReady ? (
+          <div className="question">Which breed does this dog belong to?</div>
+        ) : null}
+        <DogImage onIsImageReadyChange={setIsImageReady} imageSrc={imageSrc} />
         {isImageReady ? renderAnswers() : null}
       </React.Fragment>
     );
@@ -180,16 +204,11 @@ const GameScreen = () => {
   const renderRowLayout = () => {
     return (
       <React.Fragment>
-        <div className="flexChild">
-          <div className="question">Which breed does this dog belong to?</div>
-          {isImageReady ? renderAnswers() : null}
-        </div>
+        <div className="flexChild">{isImageReady ? renderText() : null}</div>
         <div className="flexChild">
           <DogImage
             onIsImageReadyChange={setIsImageReady}
-            allAnswers={allAnswers}
             imageSrc={imageSrc}
-            isImageReady={isImageReady}
           />
         </div>
       </React.Fragment>
@@ -205,6 +224,7 @@ const GameScreen = () => {
         <StyledMainContents>
           {windowWidth < 800 ? renderColumnLayout() : renderRowLayout()}
         </StyledMainContents>
+        {isImageReady ? null : <Loader />}
       </main>
     </React.Fragment>
   );
