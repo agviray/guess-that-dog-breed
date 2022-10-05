@@ -60,18 +60,44 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
 
   useEffect(() => {
-    const postSubmission = { ...submissionDetails };
-    if (postSubmission.isCorrect) {
+    const postSubmitDetails = { ...submissionDetails };
+    if (postSubmitDetails.isCorrect) {
       setIsAnswerCorrect(true);
     } else {
       setIsAnswerCorrect(false);
     }
   }, [submissionDetails]);
 
-  const renderMessage = (postSubmission) => {
-    return postSubmission.isCorrect
-      ? 'Congrats!'
-      : `Sorry! Your answer is incorrect. The correct answer is: ${postSubmission.correctAnswer}`;
+  const capitalizeDogBreed = (breed) => {
+    return breed.charAt(0).toUpperCase() + breed.slice(1);
+  };
+
+  const renderMessageContents = (postSubmitDetails) => {
+    const message = postSubmitDetails.isCorrect
+      ? {
+          heading: 'Congrats!',
+          body: `Your answer is correct!`,
+          image: null,
+        }
+      : {
+          heading: 'Sorry!',
+          body: `Your answer is incorrect. The correct answer is ${capitalizeDogBreed(
+            postSubmitDetails.correctAnswer
+          )}.`,
+          image: null,
+        };
+
+    return (
+      <React.Fragment>
+        <h2>{message.heading}</h2>
+        <div className="messageBody">{message.body}</div>
+        <div className="buttonContainer">
+          <Button onButtonClick={continueGame} specialStyles={null}>
+            Continue
+          </Button>
+        </div>
+      </React.Fragment>
+    );
   };
 
   const continueGame = () => {
@@ -82,16 +108,9 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
     <ThemeProvider theme={() => passThemeStyles(theme, isAnswerCorrect)}>
       <StyledContainer isAnswerCorrect={isAnswerCorrect}>
         <StyledMessage>
-          <h2>{renderMessage(submissionDetails)}</h2>
-          <div className="messageBody">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Dignissimos, nihil porro perferendis impedit non ex?
-          </div>
-          <div className="buttonContainer">
-            <Button onButtonClick={continueGame} specialStyles={null}>
-              Continue
-            </Button>
-          </div>
+          {isAnswerCorrect !== null
+            ? renderMessageContents(submissionDetails)
+            : null}
         </StyledMessage>
       </StyledContainer>
     </ThemeProvider>
