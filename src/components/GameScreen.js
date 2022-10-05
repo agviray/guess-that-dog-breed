@@ -7,6 +7,7 @@ import DogImage from './DogImage';
 import AnswerChoices from './AnswerChoices';
 import GameControls from './GameControls';
 import Loader from './Loader';
+import MessageModal from './MessageModal';
 
 const StyledMainContents = styled.div`
   position: relative;
@@ -49,18 +50,14 @@ const StyledMainContents = styled.div`
   }
 `;
 
-const Message = styled.div`
-  padding-top: 2rem;
-`;
-
 const GameScreen = () => {
   const windowWidth = useWindowWidth();
   const [imageSrc, setImageSrc] = useState('');
   const [isImageReady, setIsImageReady] = useState(false);
   const [allAnswers, setAllAnswers] = useState([]);
   const [selectedAnswer, setSelectedAnswer] = useState({});
-  const [message, setMessage] = useState('');
   const [isAnswerChecked, setIsAnswerChecked] = useState(false);
+  const [submissionDetails, setSubmissionDetails] = useState({});
 
   useEffect(() => {
     // - Request 4 random dog breeds.
@@ -118,12 +115,13 @@ const GameScreen = () => {
   }, [allAnswers]);
 
   useEffect(() => {
-    if (message === '') {
+    if (Object.keys(submissionDetails).length === 0) {
       return;
     } else {
       setIsAnswerChecked(true);
     }
-  }, [message]);
+    console.log(submissionDetails);
+  }, [submissionDetails]);
 
   const filterCorrectAnswer = (choice) => {
     return choice.isCorrect;
@@ -134,8 +132,8 @@ const GameScreen = () => {
     setIsImageReady(false);
     setAllAnswers([]);
     setSelectedAnswer({});
-    setMessage('');
     setIsAnswerChecked(false);
+    setSubmissionDetails({});
   };
 
   const renderAnswers = () => {
@@ -147,7 +145,6 @@ const GameScreen = () => {
             onAnswerChoiceSelected={setSelectedAnswer}
           />
         </div>
-        <Message>{message}</Message>
         <GameControls
           selectedAnswer={selectedAnswer}
           identifiedAnswer={
@@ -155,9 +152,7 @@ const GameScreen = () => {
               ? null
               : allAnswers.filter(filterCorrectAnswer)[0].value
           }
-          isAnswerChecked={isAnswerChecked}
-          onMessageChange={setMessage}
-          resetGameScreen={resetGameScreen}
+          onSubmissionDetailsChange={setSubmissionDetails}
         />
       </React.Fragment>
     );
@@ -173,7 +168,6 @@ const GameScreen = () => {
             onAnswerChoiceSelected={setSelectedAnswer}
           />
         </div>
-        <Message>{message}</Message>
         <GameControls
           selectedAnswer={selectedAnswer}
           identifiedAnswer={
@@ -181,9 +175,7 @@ const GameScreen = () => {
               ? null
               : allAnswers.filter(filterCorrectAnswer)[0].value
           }
-          isAnswerChecked={isAnswerChecked}
-          onMessageChange={setMessage}
-          resetGameScreen={resetGameScreen}
+          onSubmissionDetailsChange={setSubmissionDetails}
         />
       </React.Fragment>
     );
@@ -217,6 +209,12 @@ const GameScreen = () => {
 
   return (
     <React.Fragment>
+      {isAnswerChecked ? (
+        <MessageModal
+          submissionDetails={submissionDetails}
+          resetGameScreen={resetGameScreen}
+        />
+      ) : null}
       <header>
         <Navbar />
       </header>

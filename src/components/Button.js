@@ -10,6 +10,10 @@ const StyledButton = styled.span`
     disabledStyles ? disabledStyles.color : theme.color};
   background-color: ${({ disabledStyles, theme }) =>
     disabledStyles ? disabledStyles.backgroundColor : theme.backgroundColor};
+
+  &:hover {
+    cursor: default;
+  }
 `;
 
 const Button = ({ children, onButtonClick, disabledStyles }) => {

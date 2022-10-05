@@ -24,9 +24,7 @@ const disabledStyles = {
 const GameControls = ({
   selectedAnswer,
   identifiedAnswer,
-  isAnswerChecked,
-  onMessageChange,
-  resetGameScreen,
+  onSubmissionDetailsChange,
 }) => {
   const [isSubmitAvailable, setIsSubmitAvailable] = useState(false);
 
@@ -43,34 +41,27 @@ const GameControls = ({
   const checkAnswer = (userAnswer, identifiedAnswer) => {
     const correctAnswer = identifiedAnswer;
     const chosenAnswer = { ...userAnswer };
-    return correctAnswer === chosenAnswer.value
-      ? onMessageChange(`Correct!`)
-      : onMessageChange(
-          `Sorry! Your answer is incorrect. The correct answer is: ${correctAnswer}.`
-        );
-  };
-
-  const continueGame = () => {
-    resetGameScreen();
+    const submissionDetails = {
+      isCorrect: correctAnswer === chosenAnswer.value,
+      correctAnswer: correctAnswer,
+    };
+    console.log(submissionDetails);
+    return onSubmissionDetailsChange({ ...submissionDetails });
   };
 
   return (
     <ThemeProvider theme={theme}>
       <StyledContainer>
-        {isAnswerChecked ? (
-          <Button onButtonClick={continueGame}>Continue</Button>
-        ) : (
-          <Button
-            onButtonClick={() =>
-              isSubmitAvailable
-                ? checkAnswer(selectedAnswer, identifiedAnswer)
-                : null
-            }
-            disabledStyles={isSubmitAvailable ? null : disabledStyles}
-          >
-            Submit
-          </Button>
-        )}
+        <Button
+          onButtonClick={() =>
+            isSubmitAvailable
+              ? checkAnswer(selectedAnswer, identifiedAnswer)
+              : null
+          }
+          disabledStyles={isSubmitAvailable ? null : disabledStyles}
+        >
+          Submit
+        </Button>
       </StyledContainer>
     </ThemeProvider>
   );
