@@ -58,7 +58,7 @@ const GameControls = ({
               ? checkAnswer(selectedAnswer, identifiedAnswer)
               : null
           }
-          disabledStyles={isSubmitAvailable ? null : disabledStyles}
+          specialStyles={isSubmitAvailable ? null : disabledStyles}
         >
           Submit
         </Button>

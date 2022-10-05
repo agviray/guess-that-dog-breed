@@ -6,23 +6,24 @@ const StyledButton = styled.span`
   width: ${({ theme }) => theme.width};
   padding: 0.75rem 1rem;
   text-align: center;
-  color: ${({ disabledStyles, theme }) =>
-    disabledStyles ? disabledStyles.color : theme.color};
-  background-color: ${({ disabledStyles, theme }) =>
-    disabledStyles ? disabledStyles.backgroundColor : theme.backgroundColor};
+  color: ${({ specialStyles, theme }) =>
+    specialStyles ? specialStyles.color : theme.color};
+  background-color: ${({ specialStyles, theme }) =>
+    specialStyles ? specialStyles.backgroundColor : theme.backgroundColor};
+  border: ${({ theme }) => (theme.border ? theme.border : '')};
 
   &:hover {
     cursor: default;
   }
 `;
 
-const Button = ({ children, onButtonClick, disabledStyles }) => {
+const Button = ({ children, onButtonClick, specialStyles }) => {
   const handleButtonClick = () => {
     return onButtonClick ? onButtonClick() : null;
   };
 
   return (
-    <StyledButton onClick={handleButtonClick} disabledStyles={disabledStyles}>
+    <StyledButton onClick={handleButtonClick} specialStyles={specialStyles}>
       <span>{children}</span>
     </StyledButton>
   );
