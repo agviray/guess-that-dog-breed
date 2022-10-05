@@ -48,6 +48,10 @@ const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
     onAnswerChoiceSelected({ ...updatedSelectedChoice[0] });
   };
 
+  const capitalizeDogBreed = (breed) => {
+    return breed.charAt(0).toUpperCase() + breed.slice(1);
+  };
+
   const renderedAnswerChoices = answerChoices.map((choice, index) => {
     return (
       <StyledAnswerContainer key={index}>
@@ -59,7 +63,7 @@ const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
             id={choice.type}
             name="answer"
           />
-          {choice.value}
+          {capitalizeDogBreed(choice.value)}
         </label>
       </StyledAnswerContainer>
     );
