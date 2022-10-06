@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Button from './Button';
+import SadDog from '../assets/icons/sad-dog.svg';
+import HappyDog from '../assets/icons/happy-dog.svg';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -14,16 +16,38 @@ const StyledContainer = styled.div`
   z-index: 10;
   background-color: ${({ isAnswerCorrect }) =>
     isAnswerCorrect ? 'rgba(128, 234, 128, 0.9)' : 'rgba(241, 105, 105, 0.9)'};
+
+  .contents {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    overflow-y: auto;
+  }
 `;
 
 const StyledMessage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   max-width: 750px;
   margin: 0 auto;
   padding: 0 2rem;
   text-align: center;
+
+  .dog {
+    display: inline-block;
+    width: 90%;
+    max-width: 250px;
+
+    @media screen and (min-width: 900px) {
+      max-width: 350px;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
 
   h2 {
     padding-bottom: 2rem;
@@ -39,6 +63,7 @@ const StyledMessage = styled.div`
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
+    /* padding-bottom: 2rem; */
   }
 `;
 
@@ -77,18 +102,25 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
       ? {
           heading: 'Congrats!',
           body: `Your answer is correct!`,
-          image: null,
+          imageSrc: HappyDog,
         }
       : {
           heading: 'Sorry!',
           body: `Your answer is incorrect. The correct answer is ${capitalizeDogBreed(
             postSubmitDetails.correctAnswer
           )}.`,
-          image: null,
+          imageSrc: SadDog,
         };
 
     return (
       <React.Fragment>
+        <div className="dog">
+          <img
+            className="dog"
+            src={message.imageSrc}
+            alt={postSubmitDetails.isCorrect ? 'happy dog' : 'sad dog'}
+          />
+        </div>
         <h2>{message.heading}</h2>
         <div className="messageBody">{message.body}</div>
         <div className="buttonContainer">
@@ -107,11 +139,13 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
   return (
     <ThemeProvider theme={() => passThemeStyles(theme, isAnswerCorrect)}>
       <StyledContainer isAnswerCorrect={isAnswerCorrect}>
-        <StyledMessage>
-          {isAnswerCorrect !== null
-            ? renderMessageContents(submissionDetails)
-            : null}
-        </StyledMessage>
+        <div className="contents">
+          <StyledMessage>
+            {isAnswerCorrect !== null
+              ? renderMessageContents(submissionDetails)
+              : null}
+          </StyledMessage>
+        </div>
       </StyledContainer>
     </ThemeProvider>
   );
