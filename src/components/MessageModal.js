@@ -63,7 +63,6 @@ const StyledMessage = styled.div`
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    /* padding-bottom: 2rem; */
   }
 `;
 

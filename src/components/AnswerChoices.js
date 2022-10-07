@@ -1,24 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-
-const StyledAnswerContainer = styled.div`
-  position: relative;
-  padding: 0.75rem 0;
-
-  input {
-    display: inline-block;
-    margin-right: 1rem;
-  }
-
-  label:after {
-    display: inline-block;
-    position: relative;
-    top: 0;
-    right: -20px;
-    content: '';
-    display: inline-block;
-  }
-`;
+import AnswerChoice from './AnswerChoice';
 
 const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
   const [answerChoices, setAnswerChoices] = useState([]);
@@ -45,27 +26,18 @@ const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
         return choice;
       }
     });
-    onAnswerChoiceSelected({ ...updatedSelectedChoice[0] });
-  };
 
-  const capitalizeDogBreed = (breed) => {
-    return breed.charAt(0).toUpperCase() + breed.slice(1);
+    onAnswerChoiceSelected({ ...updatedSelectedChoice[0] });
   };
 
   const renderedAnswerChoices = answerChoices.map((choice, index) => {
     return (
-      <StyledAnswerContainer key={index}>
-        <label htmlFor={choice.type}>
-          <input
-            onChange={updateSelectedAnswerChoice}
-            value={choice.value}
-            type="radio"
-            id={choice.type}
-            name="answer"
-          />
-          {capitalizeDogBreed(choice.value)}
-        </label>
-      </StyledAnswerContainer>
+      <AnswerChoice
+        key={index}
+        answerType={choice.type}
+        answerValue={choice.value}
+        onAnswerChoiceChange={updateSelectedAnswerChoice}
+      />
     );
   });
 
