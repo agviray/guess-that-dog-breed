@@ -187,7 +187,11 @@ const GameScreen = () => {
         {isImageReady ? (
           <div className="question">Which breed does this dog belong to?</div>
         ) : null}
-        <DogImage onIsImageReadyChange={setIsImageReady} imageSrc={imageSrc} />
+        <DogImage
+          isImageReady={isImageReady}
+          onIsImageReadyChange={setIsImageReady}
+          imageSrc={imageSrc}
+        />
         {isImageReady ? renderAnswers() : null}
       </React.Fragment>
     );
@@ -199,6 +203,7 @@ const GameScreen = () => {
         <div className="flexChild">{isImageReady ? renderText() : null}</div>
         <div className="flexChild">
           <DogImage
+            isImageReady={isImageReady}
             onIsImageReadyChange={setIsImageReady}
             imageSrc={imageSrc}
           />

@@ -6,15 +6,19 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  opacity: ${({ isImageReady }) => (isImageReady ? '1' : '0.3')};
+  transform: ${({ isImageReady }) => (isImageReady ? 'scale(1)' : 'scale(0)')};
+  transition: all 0.3s ease-out;
 
   img {
+    border-radius: 25px;
     width: 100%;
   }
 `;
 
-const DogImage = ({ onIsImageReadyChange, imageSrc }) => {
+const DogImage = ({ isImageReady, onIsImageReadyChange, imageSrc }) => {
   const imageRef = useRef(null);
-
+  console.log(isImageReady);
   useEffect(() => {
     let dogImage;
     const updateIsImageReady = () => {
@@ -34,7 +38,7 @@ const DogImage = ({ onIsImageReadyChange, imageSrc }) => {
   }, [imageSrc]);
 
   return (
-    <StyledContainer>
+    <StyledContainer isImageReady={isImageReady}>
       {imageSrc !== '' ? <img ref={imageRef} src={imageSrc} alt="dog" /> : null}
     </StyledContainer>
   );
