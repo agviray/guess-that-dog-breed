@@ -11,14 +11,14 @@ const StyledContainer = styled.div`
   transition: all 0.3s ease-out;
 
   img {
-    border-radius: 25px;
     width: 100%;
+    border-radius: 25px;
+    box-shadow: 1px 10px 35px -7px rgba(51, 51, 51, 0.75);
   }
 `;
 
 const DogImage = ({ isImageReady, onIsImageReadyChange, imageSrc }) => {
   const imageRef = useRef(null);
-  console.log(isImageReady);
   useEffect(() => {
     let dogImage;
     const updateIsImageReady = () => {

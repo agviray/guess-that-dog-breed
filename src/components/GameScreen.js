@@ -120,7 +120,6 @@ const GameScreen = () => {
     } else {
       setIsAnswerChecked(true);
     }
-    console.log(submissionDetails);
   }, [submissionDetails]);
 
   const filterCorrectAnswer = (choice) => {
