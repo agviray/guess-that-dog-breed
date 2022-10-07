@@ -6,16 +6,21 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  background-color: inherit;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: #f6f6ff;
 
   h2 {
-    padding: 1rem 0;
+    padding: 2rem 0;
+    text-align: center;
   }
 `;
 
-const StyledDirections = styled.ul`
-  padding-bottom: 2rem;
+const StyledStepsContainer = styled.div`
+  ul {
+    padding-bottom: 2rem;
+  }
+
   li {
     padding-bottom: 1rem;
 
@@ -26,7 +31,8 @@ const StyledDirections = styled.ul`
 `;
 
 const StyledButtonContainer = styled.div`
-  padding-bottom: 1rem;
+  display: inline-block;
+  padding-bottom: 2rem;
 `;
 
 const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
@@ -45,21 +51,23 @@ const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
     <ThemeProvider theme={theme}>
       <StyledContainer>
         <h2>How to Play</h2>
-        <StyledDirections>
-          <li>Click the "Start" button to begin the game.</li>
-          <li>
-            An image of a dog will be displayed, along with a set of answer
-            choices that describe the breed of the dog shown in the image.
-          </li>
-          <li>
-            Your goal is to select the correct breed of the dog that is shown.
-          </li>
-          <li>
-            Select your answer from the available choices, and then click on the
-            "Submit" button.
-          </li>
-          <li>That's all! Let's see how well you know your dogs!</li>
-        </StyledDirections>
+        <StyledStepsContainer>
+          <ul>
+            <li>Click the "Start" button to begin the game.</li>
+            <li>
+              An image of a dog will be displayed, along with a set of answer
+              choices that describe the breed of the dog shown in the image.
+            </li>
+            <li>
+              Your goal is to select the correct breed of the dog that is shown.
+            </li>
+            <li>
+              Select your answer from the available choices, and then click on
+              the "Submit" button.
+            </li>
+            <li>That's all! Let's see how well you know your dogs!</li>
+          </ul>
+        </StyledStepsContainer>
         <StyledButtonContainer>
           <Button onButtonClick={exitDirections}>Close</Button>
         </StyledButtonContainer>

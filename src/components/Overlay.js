@@ -2,10 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const StyledOverlay = styled.div`
-  display: ${({ overlayStatus }) => (overlayStatus ? 'flex' : 'none')};
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: ${({ overlayStatus }) => (overlayStatus ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -13,19 +10,23 @@ const StyledOverlay = styled.div`
   height: 100%;
   background-color: ${({ hasChildren }) =>
     hasChildren ? 'rgba(51, 51, 51, 0.7)' : ''};
+  overflow-y: auto;
 `;
 
-const StyledOverlayContents = styled.div`
+const StyledContents = styled.div`
   width: 80%;
-  margin: 0 auto;
-  background-color: #f6f6ff;
+  max-width: 700px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
-  const childrenContainerRef = useRef(null);
+  const overlayContents = useRef(null);
 
   const toggleOverlayDisplay = (event) => {
-    if (childrenContainerRef.current.contains(event.target)) {
+    if (overlayContents.current.contains(event.target)) {
       return;
     }
     return overlayStatus ? onOverlayStatusChange(false) : null;
@@ -37,9 +38,9 @@ const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
       overlayStatus={overlayStatus}
       onClick={toggleOverlayDisplay}
     >
-      <StyledOverlayContents ref={childrenContainerRef}>
+      <StyledContents ref={overlayContents} id="contents">
         {children}
-      </StyledOverlayContents>
+      </StyledContents>
     </StyledOverlay>
   );
 };
