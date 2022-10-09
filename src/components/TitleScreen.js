@@ -57,7 +57,7 @@ const TitleScreen = () => {
           <main>
             <Link href="/game">
               <StyledButtonContainer>
-                <Button className="titleScreenButton">Start</Button>
+                <Button className="titleScreenButton">Play</Button>
               </StyledButtonContainer>
             </Link>
             <StyledButtonContainer>
