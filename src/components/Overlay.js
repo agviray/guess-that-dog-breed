@@ -2,15 +2,17 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const StyledOverlay = styled.div`
-  display: ${({ overlayStatus }) => (overlayStatus ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: ${({ hasChildren }) =>
-    hasChildren ? 'rgba(51, 51, 51, 0.7)' : ''};
+    hasChildren ? 'rgba(51, 51, 51, 0.7)' : 'rgba(51, 51, 51, 0)'};
   overflow-y: auto;
+  transform: ${({ overlayStatus }) =>
+    overlayStatus ? 'scale(1)' : 'scale(0)'};
+  transition: all 0.3s ease-in-out;
 `;
 
 const StyledContents = styled.div`
@@ -20,6 +22,9 @@ const StyledContents = styled.div`
   margin-bottom: 3rem;
   margin-left: auto;
   margin-right: auto;
+  transform: ${({ overlayStatus }) =>
+    overlayStatus ? 'scale(1)' : 'scale(0)'};
+  transition: transform 0.3s ease-in-out 0.3s;
 `;
 
 const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
@@ -38,7 +43,11 @@ const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
       overlayStatus={overlayStatus}
       onClick={toggleOverlayDisplay}
     >
-      <StyledContents ref={overlayContents} id="contents">
+      <StyledContents
+        ref={overlayContents}
+        id="contents"
+        overlayStatus={overlayStatus}
+      >
         {children}
       </StyledContents>
     </StyledOverlay>
