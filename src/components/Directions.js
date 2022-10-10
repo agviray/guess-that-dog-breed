@@ -53,23 +53,19 @@ const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
         <h2>How to Play</h2>
         <StyledStepsContainer>
           <ul>
-            <li>Click the "Start" button to begin the game.</li>
+            <li>How well do you know dog breeds?</li>
             <li>
               An image of a dog will be displayed, along with a set of answer
-              choices that describe the breed of the dog shown in the image.
+              choices listing different dog breeds.
             </li>
             <li>
-              Your goal is to select the correct breed of the dog that is shown.
+              Select your answer and click "Submit" to see if you're correct.
             </li>
-            <li>
-              Select your answer from the available choices, and then click on
-              the "Submit" button.
-            </li>
-            <li>That's all! Let's see how well you know your dogs!</li>
+            <li>Click "Play" to begin the game!</li>
           </ul>
         </StyledStepsContainer>
         <StyledButtonContainer>
-          <Button onButtonClick={exitDirections}>Close</Button>
+          <Button onButtonClick={exitDirections}>Exit to Play</Button>
         </StyledButtonContainer>
       </StyledContainer>
     </ThemeProvider>
