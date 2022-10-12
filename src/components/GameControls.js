@@ -45,7 +45,7 @@ const GameControls = ({
       isCorrect: correctAnswer === chosenAnswer.value,
       correctAnswer: correctAnswer,
     };
-    console.log(submissionDetails);
+
     return onSubmissionDetailsChange({ ...submissionDetails });
   };
 

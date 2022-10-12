@@ -11,7 +11,8 @@ const StyledContainer = styled.div`
   background-color: #f6f6ff;
 
   h2 {
-    padding: 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
     text-align: center;
   }
 `;

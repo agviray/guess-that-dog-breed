@@ -16,8 +16,6 @@ const AnswerChoices = ({ allAnswers, onAnswerChoiceSelected }) => {
     }
   }, [allAnswers]);
 
-  console.log(answerChoices);
-
   const updateSelectedAnswerChoice = (e) => {
     const allChoices = [...allAnswers];
     const checkedChoice = e.target.value;
