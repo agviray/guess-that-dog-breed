@@ -42,7 +42,7 @@ const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
   };
 
   const theme = {
-    width: '200px',
+    width: '150px',
     height: '45px',
     color: '#f3f3f3',
     backgroundColor: '#f44b12',
