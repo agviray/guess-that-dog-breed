@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Button from './Button';
-import SadDog from '../assets/icons/sad-dog.svg';
-import HappyDog from '../assets/icons/happy-dog.svg';
+import SadDog from '../assets/sad-dog-01.svg';
+import HappyDog from '../assets/happy-dog-01.svg';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
   height: 100%;
   z-index: 10;
   background-color: ${({ isAnswerCorrect }) =>
-    isAnswerCorrect ? 'rgba(128, 234, 128, 0.9)' : 'rgba(241, 105, 105, 0.9)'};
+    isAnswerCorrect ? 'rgba(131, 215, 147, 0.9)' : 'rgba(255, 117, 117, 0.9)'};
 
   .contents {
     padding-top: 100px;

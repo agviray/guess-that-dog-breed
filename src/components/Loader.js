@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import PawPrint from '../assets/icons/paw-print.svg';
+import PawPrint from '../assets/paw-print-01.svg';
 
 const walkAnimation = keyframes`
 
