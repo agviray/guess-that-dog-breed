@@ -8,7 +8,8 @@ const StyledContainer = styled.div`
   align-items: center;
   padding-left: 2rem;
   padding-right: 2rem;
-  background-color: #f6f6ff;
+  background-color: #fcf4ec;
+  border-radius: 15px;
 
   h2 {
     padding-top: 2rem;
