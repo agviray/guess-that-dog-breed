@@ -4,7 +4,7 @@ import Link from './Link';
 import Button from './Button';
 import Overlay from './Overlay';
 import Directions from './Directions';
-import DogGroup from '../assets/dog-group-silhouette-03.svg';
+import DogGroup from '../assets/dog-group-silhouette-01.svg';
 
 const StyledContainer = styled.div`
   position: relative;
