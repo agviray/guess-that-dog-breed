@@ -49,10 +49,22 @@ const GameControls = ({
     return onSubmissionDetailsChange({ ...submissionDetails });
   };
 
+  const theme = {
+    width: '150px',
+    height: '45px',
+    color: '#f3f3f3',
+    backgroundColor: '#7e5bad',
+
+    hoverTheme: {
+      backgroundColor: '#c59afc',
+    },
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <StyledContainer>
         <Button
+          isButtonAvailable={isSubmitAvailable}
           onButtonClick={() =>
             isSubmitAvailable
               ? checkAnswer(selectedAnswer, identifiedAnswer)

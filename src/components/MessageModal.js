@@ -52,7 +52,6 @@ const StyledMessage = styled.div`
   h2 {
     padding-bottom: 2rem;
     color: #f3f3f3;
-    letter-spacing: 4px;
   }
 
   .messageBody {

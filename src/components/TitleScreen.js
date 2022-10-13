@@ -4,7 +4,7 @@ import Link from './Link';
 import Button from './Button';
 import Overlay from './Overlay';
 import Directions from './Directions';
-import DogGroup from '../assets/dog-group-silhouette-01.svg';
+import DogGroup from '../assets/dog-group-silhouette-04.svg';
 
 const StyledContainer = styled.div`
   position: relative;
@@ -20,8 +20,8 @@ const StyledContents = styled.div`
 
   header {
     h1 {
-      text-align: center;
       padding-bottom: 2rem;
+      text-align: center;
     }
   }
 
@@ -35,7 +35,7 @@ const StyledContents = styled.div`
 const StyledImageContainer = styled.div`
   width: 100%;
   max-width: 900px;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 
   img {
     width: 100%;
@@ -51,7 +51,11 @@ const theme = {
   width: '150px',
   height: '45px',
   color: '#f3f3f3',
-  backgroundColor: '#f44b12',
+  backgroundColor: '#7e5bad',
+
+  hoverTheme: {
+    backgroundColor: '#c59afc',
+  },
 };
 
 const TitleScreen = () => {
@@ -74,12 +78,15 @@ const TitleScreen = () => {
             </StyledImageContainer>
             <Link href="/game">
               <StyledButtonContainer>
-                <Button className="titleScreenButton">Play</Button>
+                <Button className="titleScreenButton" isButtonAvailable={true}>
+                  Play
+                </Button>
               </StyledButtonContainer>
             </Link>
             <StyledButtonContainer>
               <Button
                 className="titleScreenButton"
+                isButtonAvailable={true}
                 onButtonClick={toggleDirections}
               >
                 Directions

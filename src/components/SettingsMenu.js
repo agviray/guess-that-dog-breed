@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Overlay from './Overlay';
 import Directions from './Directions';
 import Link from './Link';
@@ -10,7 +10,9 @@ const StyledSettingsMenu = styled.ul`
   right: 0;
   width: 170px;
   padding: 0.5rem;
-  background-color: #f6f6ff;
+  background-color: #fcf4ec;
+  box-shadow: 1px 10px 35px -7px rgba(51, 51, 51, 0.75);
+  border-radius: 15px;
   transform-origin: top right;
   transform: ${({ isMenuOpen }) => (isMenuOpen ? 'scale(1)' : 'scale(0)')};
   transition: all 0.1s ease;
@@ -26,12 +28,18 @@ const StyledOption = styled.li`
     margin: 0.5rem 0;
     width: 100%;
     height: 1px;
-    background-color: #dbdbe7;
+    background-color: #e3d8cd;
   }
 
   span {
     display: block;
     padding: 0.75rem 0;
+    border-radius: 15px;
+
+    &:hover {
+      cursor: default;
+      background-color: #f6eadd;
+    }
   }
 `;
 
@@ -43,8 +51,19 @@ const SettingsMenu = ({ isMenuOpen, onIsMenuOpenChange }) => {
     return setWasOptionSelected(!wasOptionSelected);
   };
 
+  const theme = {
+    width: '150px',
+    height: '45px',
+    color: '#f3f3f3',
+    backgroundColor: '#7e5bad',
+
+    hoverTheme: {
+      backgroundColor: '#c59afc',
+    },
+  };
+
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <Overlay
         overlayStatus={wasOptionSelected}
         onOverlayStatusChange={setWasOptionSelected}
@@ -64,7 +83,7 @@ const SettingsMenu = ({ isMenuOpen, onIsMenuOpenChange }) => {
           </Link>
         </StyledOption>
       </StyledSettingsMenu>
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import Button from './Button';
 
 const StyledContainer = styled.div`
@@ -41,35 +41,28 @@ const Directions = ({ directionsStatus, onDirectionsStatusChange }) => {
     return directionsStatus ? onDirectionsStatusChange(false) : null;
   };
 
-  const theme = {
-    width: '150px',
-    height: '45px',
-    color: '#f3f3f3',
-    backgroundColor: '#f44b12',
-  };
-
   return (
-    <ThemeProvider theme={theme}>
-      <StyledContainer>
-        <h2>How to Play</h2>
-        <StyledStepsContainer>
-          <ul>
-            <li>How well do you know dog breeds?</li>
-            <li>
-              An image of a dog will be displayed, along with a set of answer
-              choices listing different dog breeds.
-            </li>
-            <li>
-              Select your answer and click "Submit" to see if you're correct.
-            </li>
-            <li>Click "Play" to begin the game!</li>
-          </ul>
-        </StyledStepsContainer>
-        <StyledButtonContainer>
-          <Button onButtonClick={exitDirections}>Exit to Play</Button>
-        </StyledButtonContainer>
-      </StyledContainer>
-    </ThemeProvider>
+    <StyledContainer>
+      <h2>How to Play</h2>
+      <StyledStepsContainer>
+        <ul>
+          <li>How well do you know dog breeds?</li>
+          <li>
+            An image of a dog will be displayed, along with a set of answer
+            choices listing different dog breeds.
+          </li>
+          <li>
+            Select your answer and click "Submit" to see if you're correct.
+          </li>
+          <li>Click "Play" to begin the game!</li>
+        </ul>
+      </StyledStepsContainer>
+      <StyledButtonContainer>
+        <Button isButtonAvailable={true} onButtonClick={exitDirections}>
+          Exit to Play
+        </Button>
+      </StyledButtonContainer>
+    </StyledContainer>
   );
 };
 

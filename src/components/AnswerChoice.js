@@ -7,7 +7,7 @@ const StyledAnswerContainer = styled.div`
   span {
     display: block;
     padding: 0.75rem 1rem;
-    background-color: ${({ isHover }) => (isHover ? 'aliceblue' : '')};
+    background-color: ${({ isHover }) => (isHover ? '#f6eadd' : '')};
     border-radius: 25px;
   }
 

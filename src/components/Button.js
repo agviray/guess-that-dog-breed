@@ -16,16 +16,27 @@ const StyledButton = styled.span`
 
   &:hover {
     cursor: default;
+    background-color: ${({ buttonAvailability, theme }) =>
+      buttonAvailability ? theme.hoverTheme.backgroundColor : ''};
   }
 `;
 
-const Button = ({ children, onButtonClick, specialStyles }) => {
+const Button = ({
+  children,
+  isButtonAvailable,
+  onButtonClick,
+  specialStyles,
+}) => {
   const handleButtonClick = () => {
     return onButtonClick ? onButtonClick() : null;
   };
 
   return (
-    <StyledButton onClick={handleButtonClick} specialStyles={specialStyles}>
+    <StyledButton
+      buttonAvailability={isButtonAvailable}
+      onClick={handleButtonClick}
+      specialStyles={specialStyles}
+    >
       <span>{children}</span>
     </StyledButton>
   );

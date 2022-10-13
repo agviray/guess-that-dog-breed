@@ -11,7 +11,7 @@ const StyledNavbar = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #f6f6ff;
+  background-color: #fcf4ec;
   z-index: 999;
 
   nav {
@@ -19,7 +19,7 @@ const StyledNavbar = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1600px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 1.25rem 0;
     z-index: 2;
@@ -30,17 +30,35 @@ const StyledNavbar = styled.div`
       width: 35px;
       height: 35px;
 
-      &.arrow {
-        margin-left: 1rem;
-      }
-
-      &.settings {
-        margin-right: 1rem;
+      &:hover {
+        cursor: pointer;
       }
 
       img {
         max-width: 100%;
         max-height: 100%;
+        transform: none;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &.arrow {
+        margin-left: 1rem;
+
+        &:hover {
+          img {
+            transform: translate(-7px);
+          }
+        }
+      }
+
+      &.settings {
+        margin-right: 1rem;
+
+        &:hover {
+          img {
+            transform: rotate(180deg);
+          }
+        }
       }
     }
   }
