@@ -38,6 +38,7 @@ const StyledMessage = styled.div`
     display: inline-block;
     width: 90%;
     max-width: 250px;
+    padding-bottom: 2rem;
 
     @media screen and (min-width: 900px) {
       max-width: 350px;
@@ -114,7 +115,6 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
       <React.Fragment>
         <div className="dog">
           <img
-            className="dog"
             src={message.imageSrc}
             alt={postSubmitDetails.isCorrect ? 'happy dog' : 'sad dog'}
           />
