@@ -7,9 +7,8 @@ import HappyDog from '../assets/happy-dog-01.svg';
 const StyledContainer = styled.div`
   width: 100%;
   padding: 3rem 0;
-  z-index: 10;
-  background-color: ${({ isAnswerCorrect }) =>
-    isAnswerCorrect ? 'rgba(131, 215, 147, 0.9)' : 'rgba(255, 117, 117, 0.9)'};
+  background-color: #fcf4ec;
+  border-radius: 15px;
 `;
 
 const StyledMessage = styled.div`
@@ -22,25 +21,8 @@ const StyledMessage = styled.div`
   padding: 0 2rem;
   text-align: center;
 
-  .dog {
-    display: inline-block;
-    width: 90%;
-    max-width: 250px;
-    padding-bottom: 2rem;
-
-    @media screen and (min-width: 900px) {
-      max-width: 350px;
-    }
-
-    img {
-      max-width: 100%;
-      max-height: 100%;
-    }
-  }
-
   h2 {
-    padding-bottom: 2rem;
-    color: #f3f3f3;
+    padding-bottom: 1.5rem;
   }
 
   .messageBody {
@@ -54,19 +36,43 @@ const StyledMessage = styled.div`
   }
 `;
 
+const StyledImageContainer = styled.div`
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  max-width: 200px;
+  padding-bottom: 2rem;
+
+  @media screen and (min-width: 900px) {
+    max-width: 200px;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+`;
+
 const theme = {
   width: 'auto',
   height: '45px',
-  backgroundColor: '#f3f3f3',
+  color: '#f3f3f3',
+  backgroundColor: '#7e5bad',
+
+  hoverTheme: {
+    backgroundColor: '#c59afc',
+  },
 };
 
-const passThemeStyles = (theme, answerStatus) => {
-  const newTheme = {
-    ...theme,
-    color: `${answerStatus ? '#3fcf3f' : '#e22929'}`,
-  };
-  return newTheme;
-};
+// - This function passes the original theme along with any additional
+//   styles to ThemeProvider.
+// const passThemeStyles = (theme, answerStatus) => {
+//   const newTheme = {
+//     ...theme,
+//     color: `${answerStatus ? '#3fcf3f' : '#e22929'}`,
+//   };
+//   return newTheme;
+// };
 
 const MessageModal = ({ submissionDetails, resetGameScreen }) => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
@@ -101,16 +107,20 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
 
     return (
       <React.Fragment>
-        <div className="dog">
+        <h2>{message.heading}</h2>
+        <StyledImageContainer>
           <img
             src={message.imageSrc}
             alt={postSubmitDetails.isCorrect ? 'happy dog' : 'sad dog'}
           />
-        </div>
-        <h2>{message.heading}</h2>
+        </StyledImageContainer>
         <div className="messageBody">{message.body}</div>
         <div className="buttonContainer">
-          <Button onButtonClick={continueGame} specialStyles={null}>
+          <Button
+            isButtonAvailable={true}
+            onButtonClick={continueGame}
+            specialStyles={null}
+          >
             Continue
           </Button>
         </div>
@@ -123,7 +133,7 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
   };
 
   return (
-    <ThemeProvider theme={() => passThemeStyles(theme, isAnswerCorrect)}>
+    <ThemeProvider theme={theme}>
       <StyledContainer isAnswerCorrect={isAnswerCorrect}>
         <div className="contents">
           <StyledMessage>
