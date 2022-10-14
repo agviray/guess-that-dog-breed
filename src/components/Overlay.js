@@ -7,6 +7,7 @@ const StyledOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 3rem 0;
   background-color: ${({ hasChildren }) =>
     hasChildren ? 'rgba(51, 51, 51, 0.7)' : 'rgba(51, 51, 51, 0)'};
   overflow-y: auto;
@@ -18,8 +19,6 @@ const StyledOverlay = styled.div`
 const StyledContents = styled.div`
   width: 80%;
   max-width: 700px;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
   margin-left: auto;
   margin-right: auto;
   transform: ${({ overlayStatus }) =>
@@ -34,7 +33,10 @@ const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
     if (overlayContents.current.contains(event.target)) {
       return;
     }
-    return overlayStatus ? onOverlayStatusChange(false) : null;
+
+    if (onOverlayStatusChange) {
+      return overlayStatus ? onOverlayStatusChange(false) : null;
+    }
   };
 
   return (

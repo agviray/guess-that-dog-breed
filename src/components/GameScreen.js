@@ -8,6 +8,20 @@ import AnswerChoices from './AnswerChoices';
 import GameControls from './GameControls';
 import Loader from './Loader';
 import MessageModal from './MessageModal';
+import Overlay from './Overlay';
+
+const StyledContainer = styled.div`
+  position: relative;
+`;
+
+const StyledOverlayContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: ${({ isAnswerChecked }) =>
+    isAnswerChecked ? 'visible' : 'hidden'};
+  z-index: 1002;
+`;
 
 const StyledMainContents = styled.div`
   position: relative;
@@ -212,13 +226,7 @@ const GameScreen = () => {
   };
 
   return (
-    <React.Fragment>
-      {isAnswerChecked ? (
-        <MessageModal
-          submissionDetails={submissionDetails}
-          resetGameScreen={resetGameScreen}
-        />
-      ) : null}
+    <StyledContainer>
       <header>
         <Navbar />
       </header>
@@ -228,7 +236,17 @@ const GameScreen = () => {
         </StyledMainContents>
         {isImageReady ? null : <Loader />}
       </main>
-    </React.Fragment>
+      <StyledOverlayContainer isAnswerChecked={isAnswerChecked}>
+        <Overlay overlayStatus={isAnswerChecked} onOverlayStatusChange={null}>
+          {isAnswerChecked ? (
+            <MessageModal
+              submissionDetails={submissionDetails}
+              resetGameScreen={resetGameScreen}
+            />
+          ) : null}
+        </Overlay>
+      </StyledOverlayContainer>
+    </StyledContainer>
   );
 };
 

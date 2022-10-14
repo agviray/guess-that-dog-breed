@@ -5,23 +5,11 @@ import SadDog from '../assets/sad-dog-01.svg';
 import HappyDog from '../assets/happy-dog-01.svg';
 
 const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
+  padding: 3rem 0;
   z-index: 10;
   background-color: ${({ isAnswerCorrect }) =>
     isAnswerCorrect ? 'rgba(131, 215, 147, 0.9)' : 'rgba(255, 117, 117, 0.9)'};
-
-  .contents {
-    padding-top: 100px;
-    padding-bottom: 100px;
-    overflow-y: auto;
-  }
 `;
 
 const StyledMessage = styled.div`
