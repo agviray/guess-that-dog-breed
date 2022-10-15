@@ -7,6 +7,9 @@ import Directions from './Directions';
 import DogGroup from '../assets/dog-group-silhouette-04.svg';
 
 const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   position: relative;
   min-height: 100vh;
 `;
