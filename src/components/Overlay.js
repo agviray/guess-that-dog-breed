@@ -14,6 +14,12 @@ const StyledOverlay = styled.div`
   transform: ${({ overlayStatus }) =>
     overlayStatus ? 'scale(1)' : 'scale(0)'};
   transition: all 0.3s ease-in-out;
+
+  @media screen and (min-width: 900px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 const StyledContents = styled.div`
