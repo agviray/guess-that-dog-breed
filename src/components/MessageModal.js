@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Button from './Button';
-import SadDog from '../assets/sad-dog-01.svg';
-import HappyDog from '../assets/happy-dog-01.svg';
+import HappyDog from '../assets/bernese-mountain.png';
+import SadDog from '../assets/bullmastiff.png';
+import Drop from '../assets/sweat-drop.svg';
 
 const StyledContainer = styled.div`
   width: 100%;
@@ -40,7 +41,7 @@ const StyledImageContainer = styled.div`
   position: relative;
   display: inline-block;
   width: 90%;
-  max-width: 200px;
+  max-width: 150px;
   padding-bottom: 2rem;
 
   @media screen and (min-width: 900px) {
@@ -50,6 +51,24 @@ const StyledImageContainer = styled.div`
   img {
     max-width: 100%;
     max-height: 100%;
+  }
+`;
+
+const StyledDropContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 25px;
+  height: 40px;
+
+  @media screen and (min-width: 900px) {
+    width: 35px;
+    height: 50px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -90,6 +109,25 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
     return breed.charAt(0).toUpperCase() + breed.slice(1);
   };
 
+  const renderSuccessDog = () => {
+    return (
+      <StyledImageContainer>
+        <img src={HappyDog} alt="happy dog" />
+      </StyledImageContainer>
+    );
+  };
+
+  const renderFailDog = () => {
+    return (
+      <StyledImageContainer>
+        <img src={SadDog} alt="sad dog" />
+        <StyledDropContainer>
+          <img src={Drop} alt="drop" />
+        </StyledDropContainer>
+      </StyledImageContainer>
+    );
+  };
+
   const renderMessageContents = (postSubmitDetails) => {
     const message = postSubmitDetails.isCorrect
       ? {
@@ -108,12 +146,7 @@ const MessageModal = ({ submissionDetails, resetGameScreen }) => {
     return (
       <React.Fragment>
         <h2>{message.heading}</h2>
-        <StyledImageContainer>
-          <img
-            src={message.imageSrc}
-            alt={postSubmitDetails.isCorrect ? 'happy dog' : 'sad dog'}
-          />
-        </StyledImageContainer>
+        {isAnswerCorrect ? renderSuccessDog() : renderFailDog()}
         <div className="messageBody">{message.body}</div>
         <div className="buttonContainer">
           <Button
