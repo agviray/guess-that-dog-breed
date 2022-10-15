@@ -21,7 +21,12 @@ const StyledContents = styled.div`
   header {
     h1 {
       padding-bottom: 2rem;
+      font-size: 10vw;
       text-align: center;
+
+      @media screen and (min-width: 800px) {
+        font-size: 80px;
+      }
     }
   }
 
