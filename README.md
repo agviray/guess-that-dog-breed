@@ -8,7 +8,7 @@ Guess That Dog Breed! was made with create-react-app. The dog images used in thi
 
 ## Access/Installation
 
-You can play a live version of the game [here](), or run it locally by following the steps shown below.
+You can play a live version of the game [here](https://guess-that-dog-breed.netlify.app/), or run it locally by following the steps shown below.
 
 ```zsh
 # Step 1 - Clone the repo in a workspace directory on your machine.
