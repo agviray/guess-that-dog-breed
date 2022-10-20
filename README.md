@@ -6,9 +6,11 @@ Guess That Dog Breed! is guessing game that tests your skills in identifying whi
 
 Guess That Dog Breed! was made with create-react-app. The dog images used in this application were retrieved via the [Dog CEO API](https://dog.ceo/dog-api/documentation/).
 
-## Access/Installation
+## Play Game
 
-You can play a live version of the game [here](https://guess-that-dog-breed.netlify.app/), or run it locally by following the steps shown below.
+You can play a live version of the game [here](https://guess-that-dog-breed.netlify.app/), or run it locally by following the Installation steps shown below.
+
+## Installation
 
 ```zsh
 # Step 1 - Clone the repo in a workspace directory on your machine.
