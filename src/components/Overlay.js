@@ -11,9 +11,9 @@ const StyledOverlay = styled.div`
   background-color: ${({ hasChildren }) =>
     hasChildren ? 'rgba(51, 51, 51, 0.7)' : 'rgba(51, 51, 51, 0)'};
   overflow-y: auto;
-  transform: ${({ overlayStatus }) =>
-    overlayStatus ? 'scale(1)' : 'scale(0)'};
-  transition: all 0.3s ease-in-out;
+  visibility: ${({ overlayStatus }) => (overlayStatus ? 'visible' : 'hidden')};
+  opacity: ${({ overlayStatus }) => (overlayStatus ? '1' : '0')};
+  transition: all 0.2s ease-in-out;
 
   @media screen and (min-width: 900px) {
     display: flex;
@@ -29,7 +29,7 @@ const StyledContents = styled.div`
   margin-right: auto;
   transform: ${({ overlayStatus }) =>
     overlayStatus ? 'scale(1)' : 'scale(0)'};
-  transition: transform 0.3s ease-in-out 0.3s;
+  transition: transform 0.3s ease-in-out;
 `;
 
 const Overlay = ({ children, overlayStatus, onOverlayStatusChange }) => {
